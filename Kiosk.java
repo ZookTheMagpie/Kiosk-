@@ -1,16 +1,17 @@
+
 import java.util.HashMap;
 import java.util.InputMismatchException;
 
 /**
- * The kiosk class deals with the user interface
- * which allows the user to amongs other things:
- * add books, add publisher, search for books and other things.
+ * The kiosk class deals with the user interface which allows the user to amongs
+ * other things: add books, add publisher, search for books and other things.
  *
  * @author Hallvard
  * @version 12.02.16
  */
 public class Kiosk
 {
+
     private Register register;
     private Parser parser;
 
@@ -22,10 +23,11 @@ public class Kiosk
         register = new Register();
         parser = new Parser();
     }
-/**
- * The start method is responsible for running the application.
- * It allows the user to select a number of options from a menu system.
- */
+
+    /**
+     * The start method is responsible for running the application. It allows
+     * the user to select a number of options from a menu system.
+     */
     public void start()
     {
         printWelcome();
@@ -50,17 +52,18 @@ public class Kiosk
                     case 3:
                         this.findBookByPublisherName();
                         break;
-                        
+
                     case 4:
                         this.findBookByTitle();
                         break;
-                        
+
                     case 5:
                         this.findBookByAuthor();
                         break;
-                        
+
                     case 6:
-                        this.printAllBooks();;
+                        this.printAllBooks();
+                        ;
                         break;
 
                     case 7:
@@ -70,16 +73,19 @@ public class Kiosk
 
                     default:
                 }
-            } catch (InputMismatchException ime)
+            }
+            
+            catch (InputMismatchException ime)
             {
                 System.out.println("\nERROR: Please provide a number between 1 and 7..\n");
             }
         }
         System.out.println("Good bye.");
     }
-/**
- * This method is responsible for creating a new publisher.
- */
+
+    /**
+     * This method is responsible for creating a new publisher.
+     */
     private void initiatePublisher()
     {
         String publisherName;
@@ -87,9 +93,9 @@ public class Kiosk
         System.out.println();
         System.out.println("> ");
         publisherName = "";
-        while(publisherName.trim().equals(""))
+        while (publisherName.trim().equals(""))
         {
-        publisherName = parser.getInputString();
+            publisherName = parser.getInputString();
         }
 
         register.addPublisher(publisherName);
@@ -98,10 +104,9 @@ public class Kiosk
     }
 
     /**
-     * This method is responsible for creating a new book.
-     * If you choose a publisher that doesn't exist while
-     * creating the book, it allows you to make 
-     * a new publisher with that name.
+     * This method is responsible for creating a new book. If you choose a
+     * publisher that doesn't exist while creating the book, it allows you to
+     * make a new publisher with that name.
      */
     private void newBook()
     {
@@ -111,52 +116,50 @@ public class Kiosk
         System.out.println("Please enter the book's title.");
         System.out.println();
         System.out.println("> ");
-        while(title.trim().equals(""))
+        while (title.trim().equals(""))
         {
-        title = parser.getInputString();
+            title = parser.getInputString();
         }
         System.out.println();
         System.out.println("Please enter the book's author.");
         System.out.println();
         System.out.println("> ");
-        while(author.trim().equals(""))
+        while (author.trim().equals(""))
         {
-        author = parser.getInputString();
+            author = parser.getInputString();
         }
         System.out.println();
         System.out.println("Please enter the book's publisher.");
         System.out.println();
         System.out.println("> ");
-        while(publisherName.trim().equals(""))
+        while (publisherName.trim().equals(""))
         {
-        publisherName = parser.getInputString();
+            publisherName = parser.getInputString();
         }
         System.out.println();
-        if(register.getPublisher(publisherName) != null)
+        if (register.getPublisher(publisherName) != null)
         {
-        this.addBookToRegister(title, author, publisherName);
-        System.out.println(title + " added to the store.");
-        }
-        else
+            this.addBookToRegister(title, author, publisherName);
+            System.out.println(title + " added to the store.");
+        } else
         {
             System.out.println("There is no publisher with that name, would you like to add one?");
             System.out.println("1. Yes.");
             System.out.println("2. No.");
             int answer = parser.getYesOrNo();
-            if(answer == 1)
+            if (answer == 1)
             {
                 register.addPublisher(publisherName);
                 this.addBookToRegister(title, author, publisherName);
                 System.out.println(title + " added to the store.");
-            }
-            else
+            } else
             {
                 System.out.println("The book was not added to the store.");
                 System.out.println();
             }
         }
     }
-    
+
     /**
      * Prints the menu system with the options to the user.
      */
@@ -173,9 +176,10 @@ public class Kiosk
         System.out.println("7. Quit.");
         System.out.println();
     }
-/**
- * Welcomes you to the application.
- */
+
+    /**
+     * Welcomes you to the application.
+     */
     private void printWelcome()
     {
         System.out.println("Welcome to your new litterature store!");
@@ -217,9 +221,9 @@ public class Kiosk
         System.out.println();
         System.out.println("> ");
         String name = "";
-        while(name.trim().equals(""))
+        while (name.trim().equals(""))
         {
-        name = parser.getInputString();
+            name = parser.getInputString();
         }
         Publisher publ = register.getPublisher(name);
         String bookDetails;
@@ -244,9 +248,9 @@ public class Kiosk
         System.out.println();
         System.out.println("> ");
         String bookTitle = "";
-        while(bookTitle.trim().equals(""))
+        while (bookTitle.trim().equals(""))
         {
-        bookTitle = parser.getInputString();
+            bookTitle = parser.getInputString();
         }
         String bookDetails = register.findBookByName(bookTitle);
         System.out.println();
@@ -264,9 +268,9 @@ public class Kiosk
         System.out.println();
         System.out.println("> ");
         String bookAuthor = "";
-        while(bookAuthor.trim().equals(""))
+        while (bookAuthor.trim().equals(""))
         {
-        bookAuthor = parser.getInputString();
+            bookAuthor = parser.getInputString();
         }
         String bookDetails = register.findBookByAuthor(bookAuthor);
         System.out.println();
