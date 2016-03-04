@@ -1,17 +1,21 @@
+<<<<<<< HEAD
  
 
+=======
+>>>>>>> origin/master
 import java.util.HashMap;
+import java.util.InputMismatchException;
 
 /**
- * The kiosk allows you to add and find books. You can also add publishers and
- * search for books by the author.
+ * The kiosk class deals with the user interface
+ * which allows the user to amongs other things:
+ * add books, add publisher, search for books and other things.
  *
  * @author Hallvard
  * @version 12.02.16
  */
 public class Kiosk
 {
-
     private Register register;
     private Parser parser;
 
@@ -23,139 +27,160 @@ public class Kiosk
         register = new Register();
         parser = new Parser();
     }
-
+/**
+ * The start method is responsible for running the application.
+ * It allows the user to select a number of options from a menu system.
+ */
     public void start()
     {
         printWelcome();
-        printHelp();
 
         boolean finished = false;
         while (!finished)
         {
-            Command command = parser.getCommand();
-            finished = processCommand(command);
+            try
+            {
+                showMenu();
+                int menuSelection = parser.menuSelection();
+                switch (menuSelection)
+                {
+                    case 1:
+                        this.newBook();
+                        break;
+
+                    case 2:
+                        this.initiatePublisher();
+                        break;
+
+                    case 3:
+                        this.findBookByPublisherName();
+                        break;
+                        
+                    case 4:
+                        this.findBookByTitle();
+                        break;
+                        
+                    case 5:
+                        this.findBookByAuthor();
+                        break;
+                        
+                    case 6:
+                        this.printAllBooks();;
+                        break;
+
+                    case 7:
+                        System.out.println("\nThank you for using Application v1.0. Bye!\n");
+                        finished = true;
+                        break;
+
+                    default:
+                }
+            } catch (InputMismatchException ime)
+            {
+                System.out.println("\nERROR: Please provide a number between 1 and 7..\n");
+            }
         }
         System.out.println("Good bye.");
     }
-
-    private boolean processCommand(Command command)
-    {
-        boolean wantToQuit = false;
-
-        if (command.isUnknown())
-        {
-            System.out.println("That is no valid command...");
-            return false;
-        }
-
-        String commandWord = command.getCommandWord();
-        if (commandWord.equals("add"))
-        {
-            if (command.hasSecondWord())
-            {
-                if (command.getSecondWord().equals("book"))
-                {
-                    this.newBook();
-                } else if (command.getSecondWord().equals("publisher"))
-                {
-                    this.initiatePublisher();
-                }
-            } else
-            {
-                System.out.println("Add what?");
-            }
-        } else if (commandWord.equals("quit"))
-        {
-            wantToQuit = quit(command);
-        } else if (commandWord.equals("help"))
-        {
-            printHelp();
-        } else if (commandWord.equals("find"))
-        {
-            if (command.hasSecondWord())
-            {
-                if (command.getSecondWord().equals("by"))
-                {
-                    if (command.hasThirdWord())
-                    {
-                        if(command.getThirdWord().equals("publisher"))
-                        {
-                            this.findBookByPublisherName();
-                        }
-                        else if(command.getThirdWord().equals("title"))
-                        {
-                            this.findBookByTitle();
-                        }
-                        else if(command.getThirdWord().equals("author"))
-                        {
-                            this.findBookByAuthor();
-                        }
-                        else
-                        {
-                            System.out.println("Not a valid search method.");
-                        }
-                    } else
-                    {
-                        System.out.println("Find book by what?");
-                    }
-                } else
-                {
-                    System.out.println("You must type 'find by' and what method you want to use.");
-                }
-
-            } else
-            {
-                System.out.println("Not a valid command.");
-            }
-        }
-        return wantToQuit;
-    }
-
+/**
+ * This method is responsible for creating a new publisher.
+ */
     private void initiatePublisher()
     {
         String publisherName;
         System.out.println("Please enter the name of the publisher.");
         System.out.println();
         System.out.println("> ");
+        publisherName = "";
+        while(publisherName.trim().equals(""))
+        {
         publisherName = parser.getInputString();
+        }
 
-        this.newPublisher(publisherName);
+        register.addPublisher(publisherName);
         System.out.println(publisherName + " added as a publisher.");
+        System.out.println();
     }
 
+    /**
+     * This method is responsible for creating a new book.
+     * If you choose a publisher that doesn't exist while
+     * creating the book, it allows you to make 
+     * a new publisher with that name.
+     */
     private void newBook()
     {
-        String title;
-        String author;
-        String publisherName;
+        String title = "";
+        String author = "";
+        String publisherName = "";
         System.out.println("Please enter the book's title.");
         System.out.println();
         System.out.println("> ");
+        while(title.trim().equals(""))
+        {
         title = parser.getInputString();
+        }
         System.out.println();
         System.out.println("Please enter the book's author.");
         System.out.println();
         System.out.println("> ");
+        while(author.trim().equals(""))
+        {
         author = parser.getInputString();
+        }
         System.out.println();
         System.out.println("Please enter the book's publisher.");
         System.out.println();
         System.out.println("> ");
+        while(publisherName.trim().equals(""))
+        {
         publisherName = parser.getInputString();
+        }
         System.out.println();
-
+        if(register.getPublisher(publisherName) != null)
+        {
         this.addBookToRegister(title, author, publisherName);
-
         System.out.println(title + " added to the store.");
+        }
+        else
+        {
+            System.out.println("There is no publisher with that name, would you like to add one?");
+            System.out.println("1. Yes.");
+            System.out.println("2. No.");
+            int answer = parser.getYesOrNo();
+            if(answer == 1)
+            {
+                register.addPublisher(publisherName);
+                this.addBookToRegister(title, author, publisherName);
+                System.out.println(title + " added to the store.");
+            }
+            else
+            {
+                System.out.println("The book was not added to the store.");
+                System.out.println();
+            }
+        }
     }
-
-    private void printHelp()
+    
+    /**
+     * Prints the menu system with the options to the user.
+     */
+    private void showMenu()
     {
-        System.out.println("Your command words are:");
-        System.out.println(parser.getCommandWords().getValidCommands());
+        System.out.println();
+        System.out.println("Please choose menu item (1-7): ");
+        System.out.println("1. Add book.");
+        System.out.println("2. Add publisher.");
+        System.out.println("3. Find book by publisher.");
+        System.out.println("4. Find book by title.");
+        System.out.println("5. Find book by author.");
+        System.out.println("6. Print all books");
+        System.out.println("7. Quit.");
         System.out.println();
     }
-
+/**
+ * Welcomes you to the application.
+ */
     private void printWelcome()
     {
         System.out.println("Welcome to your new litterature store!");
@@ -176,10 +201,10 @@ public class Kiosk
         {
             System.out.println("There is no publisher with that name!");
             System.out.println(publisherName + " added to the list of publishers.");
-            this.newPublisher(publisherName);
+            this.initiatePublisher();
             publ = register.getPublisher(publisherName);
             register.addBook(publ, new Book(title, author, publ));
-            
+
         } else
         {
             register.addBook(publ, new Book(title, author, publ));
@@ -196,7 +221,11 @@ public class Kiosk
         System.out.println("What publisher would you like to search by?");
         System.out.println();
         System.out.println("> ");
-        String name = parser.getInputString();
+        String name = "";
+        while(name.trim().equals(""))
+        {
+        name = parser.getInputString();
+        }
         Publisher publ = register.getPublisher(name);
         String bookDetails;
         if (publ == null)
@@ -219,7 +248,11 @@ public class Kiosk
         System.out.println("What title would you like to search by?");
         System.out.println();
         System.out.println("> ");
-        String bookTitle = parser.getInputString();
+        String bookTitle = "";
+        while(bookTitle.trim().equals(""))
+        {
+        bookTitle = parser.getInputString();
+        }
         String bookDetails = register.findBookByName(bookTitle);
         System.out.println();
         System.out.println(bookDetails);
@@ -235,7 +268,11 @@ public class Kiosk
         System.out.println("What author would you like to search by?");
         System.out.println();
         System.out.println("> ");
-        String bookAuthor = parser.getInputString();
+        String bookAuthor = "";
+        while(bookAuthor.trim().equals(""))
+        {
+        bookAuthor = parser.getInputString();
+        }
         String bookDetails = register.findBookByAuthor(bookAuthor);
         System.out.println();
         System.out.println(bookDetails);
@@ -248,27 +285,4 @@ public class Kiosk
     {
         System.out.println(register.getAllBooks());
     }
-
-    /**
-     * Creates a publisher.
-     *
-     * @param String publisherName.
-     */
-    private void newPublisher(String publisherName)
-    {
-        register.addPublisher(publisherName);
-    }
-
-    private boolean quit(Command command)
-    {
-        if (command.hasSecondWord())
-        {
-            System.out.println("Quit what?");
-            return false;
-        } else
-        {
-            return true;  // signal that we want to quit
-        }
-    }
-
 }
