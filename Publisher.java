@@ -1,11 +1,7 @@
-package kioskprosjekt;
-
-
-
 /**
  * This class contains the information that defines a publisher.
  *
- * @author Hallvard
+ * @author Hallvard & Alexander
  */
 public class Publisher 
 {
@@ -23,6 +19,7 @@ public class Publisher
     
     /**
      * Returns the name of the publisher.
+     * @return The publisher name
      */
     public String getName()
     {
