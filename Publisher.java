@@ -1,5 +1,3 @@
-package kioskprosjekt;
-
 
 
 /**
@@ -14,7 +12,7 @@ public class Publisher
     /**
      * A publisher is created by giving it a name.
      * 
-     * @param String name
+     * @param name the name of the publisher.
      */
     public Publisher(String name)
     {
@@ -23,6 +21,8 @@ public class Publisher
     
     /**
      * Returns the name of the publisher.
+     * 
+     * @return the name of the publisher.
      */
     public String getName()
     {

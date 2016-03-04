@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package kioskprosjekt;
 
 import java.util.Iterator;
 
@@ -41,9 +40,7 @@ public class CommandWords
      * @return true if a given string is a valid command,
      * false if it isn't.
      * 
-     * @param String aString
-     * 
-     * @return true or false
+     * @param aString string to be checked if it is a command.
      */
     public boolean isCommand(String aString)
     {

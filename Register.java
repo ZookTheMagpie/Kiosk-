@@ -1,5 +1,3 @@
-package kioskprosjekt;
-
 
 import java.util.HashMap;
 
@@ -26,8 +24,8 @@ public class Register
     /**
      * Adds a book to the register.
      * 
-     * @param Publisher publisher.
-     * @param Book book.
+     * @param publisher the publisher of the book
+     * @param book the book to add in the register.
      */
     public void addBook(Publisher publisher, Book book)
     {
@@ -84,7 +82,7 @@ public class Register
             returnString = "This pubisher has published: ";
             
             returnString = returnString + desiredBook.getTitle()
-            + "by: " + desiredBook.getAuthor() + "\n";
+            + " by: " + desiredBook.getAuthor() + "\n";
         } 
         else
         {
@@ -105,14 +103,14 @@ public class Register
     
     public String getAllBooks()
     {
-        String returnString = null;
+        String returnString = "";
         for(Book book : bookList.values())
         {
             returnString = returnString + book.getTitle() 
             + " by: " + book.getAuthor() + " published by: " 
             + book.getPublisher().getName() + "\n";
         }
-        if(returnString == null)
+        if(returnString.equals(""))
         {
             returnString = "There are no books.";
         }

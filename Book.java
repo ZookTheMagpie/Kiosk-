@@ -1,7 +1,4 @@
-package kioskprosjekt;
-
-
- ;
+;
 
 /**
  * This class contains the information that defines a book.
@@ -14,14 +11,13 @@ public class Book
     private String author;
     private Publisher publisher;
     
-    /**
-     * Creates a book by giving it a title, an author and a publisher.
-     * 
-     * @param String title.
-     * @param String author.
-     * @param Publisher publisher.
-     */
-    
+
+   /**
+    * 
+    * @param title the title of the book.
+    * @param author the author of the book
+    * @param publisher  the publisher of the book
+    */ 
  public Book(String title, String author, Publisher publisher)
  {
    this.title = title;
@@ -31,6 +27,8 @@ public class Book
  
  /**
   * Returns the author of the book.
+  * 
+  * @return The author of the book.
   */
  public String getAuthor()
  {
@@ -39,6 +37,8 @@ public class Book
  
  /**
   * Returns the title of the book.
+  * 
+  * @return the title of the book.
   */
  public String getTitle()
  {
@@ -47,6 +47,8 @@ public class Book
  
  /**
   * Returns the publisher of the book.
+  * 
+  * @return The publisher of the book.
   */
  public Publisher getPublisher()
  {
