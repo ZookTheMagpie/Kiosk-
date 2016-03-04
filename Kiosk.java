@@ -1,18 +1,16 @@
-package kioskprosjekt;
-
 import java.util.HashMap;
 import java.util.InputMismatchException;
 
 /**
- * The kiosk allows you to add and find books. You can also add publishers and
- * search for books by the author.
+ * The kiosk class deals with the user interface
+ * which allows the user to amongs other things:
+ * add books, add publisher, search for books and other things.
  *
  * @author Hallvard
  * @version 12.02.16
  */
 public class Kiosk
 {
-
     private Register register;
     private Parser parser;
 
@@ -24,7 +22,10 @@ public class Kiosk
         register = new Register();
         parser = new Parser();
     }
-
+/**
+ * The start method is responsible for running the application.
+ * It allows the user to select a number of options from a menu system.
+ */
     public void start()
     {
         printWelcome();
@@ -76,7 +77,9 @@ public class Kiosk
         }
         System.out.println("Good bye.");
     }
-
+/**
+ * This method is responsible for creating a new publisher.
+ */
     private void initiatePublisher()
     {
         String publisherName;
@@ -89,11 +92,17 @@ public class Kiosk
         publisherName = parser.getInputString();
         }
 
-        this.newPublisher(publisherName);
+        register.addPublisher(publisherName);
         System.out.println(publisherName + " added as a publisher.");
         System.out.println();
     }
 
+    /**
+     * This method is responsible for creating a new book.
+     * If you choose a publisher that doesn't exist while
+     * creating the book, it allows you to make 
+     * a new publisher with that name.
+     */
     private void newBook()
     {
         String title = "";
@@ -148,6 +157,9 @@ public class Kiosk
         }
     }
     
+    /**
+     * Prints the menu system with the options to the user.
+     */
     private void showMenu()
     {
         System.out.println();
@@ -161,7 +173,9 @@ public class Kiosk
         System.out.println("7. Quit.");
         System.out.println();
     }
-
+/**
+ * Welcomes you to the application.
+ */
     private void printWelcome()
     {
         System.out.println("Welcome to your new litterature store!");
@@ -182,7 +196,7 @@ public class Kiosk
         {
             System.out.println("There is no publisher with that name!");
             System.out.println(publisherName + " added to the list of publishers.");
-            this.newPublisher(publisherName);
+            this.initiatePublisher();
             publ = register.getPublisher(publisherName);
             register.addBook(publ, new Book(title, author, publ));
 
@@ -266,15 +280,4 @@ public class Kiosk
     {
         System.out.println(register.getAllBooks());
     }
-
-    /**
-     * Creates a publisher.
-     *
-     * @param String publisherName.
-     */
-    private void newPublisher(String publisherName)
-    {
-        register.addPublisher(publisherName);
-    }
-
 }
