@@ -8,8 +8,8 @@ import org.junit.Test;
 /**
  * The test class BookTest.
  *
- * @author  (your name)
- * @version (a version number or a date)
+ * @author  André
+ * @version 04.03.2016
  */
 public class BookTest
 {
@@ -27,7 +27,7 @@ public class BookTest
 
     /**
      * Sets up the test fixture.
-     *
+     * Makes the necessary instances for the tests.
      * Called before every test case method.
      */
     @Before
@@ -50,24 +50,36 @@ public class BookTest
 
 
     @Test
+    /**
+     * Test if a book can be added.
+     */
     public void testAddBook()
     {
         Book book2 = new Book("Lord of the Rings", "Tolkien", publishe2);
     }
 
     @Test
+    /**
+     * Checks if it can get the author name of book1.
+     */
     public void testGetAuthor()
     {
         assertSame("Frans", book1.getAuthor());
     }
 
     @Test
+    /**
+     * Tests if it finds the correct publisher.
+     */
     public void testGetPublisher()
     {
         assertSame(publishe1, book1.getPublisher());
     }
 
     @Test
+    /**
+     * Tests if the title is correct on book1.
+     */
     public void testGetTitle()
     {
         assertSame("Norge", book1.getTitle());

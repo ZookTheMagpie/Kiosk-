@@ -41,6 +41,9 @@ public class PublisherTest
     }
 
     @Test
+    /**
+     * Tests if it finds correct publisher.
+     */
     public void testGetName()
     {
         Publisher publishe1 = new Publisher("Golden");
