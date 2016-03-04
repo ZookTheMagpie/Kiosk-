@@ -32,11 +32,23 @@ public class Register
         bookList.put(publisher, book);
     } 
     
+    /**
+     * Creates a new publisher.
+     * 
+     * @param publisherName The name of the new publisher.
+     */
     public void addPublisher(String publisherName)
     {
         publishers.put(publisherName, new Publisher(publisherName));
     }
     
+    /**
+     * Allows for searches for books by their titles.
+     * Returns the title and author of the book.
+     * 
+     * @param bookName the name of the book to search for.
+     * @return The title and author of the book in a string.
+     */
     public String findBookByName(String bookName)
     {
         String returnString = null;
@@ -54,6 +66,13 @@ public class Register
         return returnString;
     }
     
+    /**
+     * Allows for searches for books by an author.
+     * Returns the title and author of the book.
+     * 
+     * @param bookAuthor the author of the book to search for.
+     * @return The title and author of the books the author has written.
+     */
     public String findBookByAuthor(String bookAuthor)
     {
         String returnString = null;
@@ -71,6 +90,13 @@ public class Register
         return returnString;        
     }
     
+    /**
+     * Allows for searches by publisher.
+     * Returns the title and author of the books published by specified publisher.
+     * 
+     * @param publisher The publisher to search by.
+     * @return The title and author of the book.
+     */
     public String findBookByPublisher(Publisher publisher)
     {
         String returnString;
@@ -91,6 +117,12 @@ public class Register
         return returnString;
     }
     
+    /**
+     * Returns the publisher with the given name, null if there is no with that name.
+     * 
+     * @param publisherName Name of the publisher.
+     * @return The publisher with the given name, null if ther is no with that name
+     */
     public Publisher getPublisher(String publisherName)
     {
         Publisher returnPublisher = null;               
@@ -101,6 +133,11 @@ public class Register
         return returnPublisher;
     }
     
+    /**
+     * Returns the information about all the books in the register.
+     * 
+     * @return The title, author and publisher of all the books in the register.
+     */
     public String getAllBooks()
     {
         String returnString = "";
