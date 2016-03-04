@@ -39,4 +39,36 @@ public class CommandTest
     public void tearDown()
     {
     }
+<<<<<<< HEAD
 }
+=======
+    
+    
+    /**
+     * Tests results when command has 3 words
+     */
+    @Test
+    public void testCommand()
+    {
+        Command command1 = new Command("f", "g", "a");
+       
+        assertEquals(true, command1.hasSecondWord());
+        assertEquals(true, command1.hasThirdWord());
+        assertEquals(false, command1.isUnknown());
+    }
+
+    /**
+     * Tests result when command has no words at all
+     */
+    @Test
+    public void testNullCommand()
+    {
+        Command command1 = new Command(null, null, null);
+        assertEquals(false, command1.hasSecondWord());
+        assertEquals(false, command1.hasThirdWord());
+        assertEquals(true, command1.isUnknown());
+    }
+}
+
+
+>>>>>>> 537c7d3f4cd6b943fbf2e0f4bc56393d8edb073f

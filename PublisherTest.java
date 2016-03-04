@@ -39,6 +39,7 @@ public class PublisherTest
     public void tearDown()
     {
     }
+<<<<<<< HEAD
 
     @Test
     /**
@@ -51,3 +52,28 @@ public class PublisherTest
     }
 }
 
+=======
+    /**
+     * Asserts that the entered name is correct
+     */
+    @Test
+    
+    public void testPublisher()
+    {
+        Publisher publishe1 = new Publisher("John");
+        assertEquals("John", publishe1.getName());
+    }
+    
+    /**
+     * Asserts that null is returned if publisher is null
+     */
+    @Test
+    public void publisherNullTest()
+    {
+        Publisher publishe2 = new Publisher(null);
+        assertNull(publishe2.getName());
+    }
+}
+
+
+>>>>>>> 537c7d3f4cd6b943fbf2e0f4bc56393d8edb073f

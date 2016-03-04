@@ -13,7 +13,10 @@ import org.junit.Test;
  */
 public class RegisterTest
 {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 537c7d3f4cd6b943fbf2e0f4bc56393d8edb073f
     /**
      * Default constructor for test class RegisterTest
      */
@@ -41,6 +44,28 @@ public class RegisterTest
     {
     }
 
+<<<<<<< HEAD
 }
 
 
+=======
+    @Test
+    /**
+     * Tests that none of the methods return null
+     */
+    public void testRegister()
+    {
+        Register register1 = new Register();
+        Publisher publishe1 = new Publisher("gyldendal");
+        Book book1 = new Book("MC", "John", publishe1);
+        register1.addBook(publishe1, book1);
+        assertNotNull(register1.findBookByAuthor("Bob"));
+        assertNotNull(register1.findBookByAuthor("John"));
+        assertNotNull(register1.findBookByName("Harry Potter"));
+        assertNotNull(register1.findBookByName("MC"));
+        assertNotNull(register1.findBookByPublisher(null));
+        assertNotNull(register1.findBookByPublisher(publishe1));
+    }
+}
+
+>>>>>>> 537c7d3f4cd6b943fbf2e0f4bc56393d8edb073f
