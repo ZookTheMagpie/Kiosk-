@@ -50,7 +50,9 @@ public class Parser
  */
     public int menuSelection() throws InputMismatchException
     {
+        
         System.out.println("> ");
+        if(reader.hasNext()&&!reader.hasNextInt())reader.nextLine();
         int menuChoice = reader.nextInt();
         if ((menuChoice < 1) || (menuChoice > 7))
         {
