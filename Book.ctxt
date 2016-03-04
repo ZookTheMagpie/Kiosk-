@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=title\ author\ publisher
+comment0.target=Book(java.lang.String,\ java.lang.String,\ Publisher)
+comment0.text=\r\n\ Creates\ a\ book\ by\ giving\ it\ a\ title,\ an\ author\ and\ a\ publisher.\r\n\ \r\n\ @param\ String\ title.\r\n\ @param\ String\ author.\r\n\ @param\ Publisher\ publisher.\r\n
+comment1.params=
+comment1.target=java.lang.String\ getAuthor()
+comment1.text=\r\n\ Returns\ the\ author\ of\ the\ book.\r\n
+comment2.params=
+comment2.target=java.lang.String\ getTitle()
+comment2.text=\r\n\ Returns\ the\ title\ of\ the\ book.\r\n
+comment3.params=
+comment3.target=Publisher\ getPublisher()
+comment3.text=\r\n\ Returns\ the\ publisher\ of\ the\ book.\r\n
+numComments=4

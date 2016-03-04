@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Register()
+comment0.text=\r\n\ Creates\ the\ register.\r\n
+comment1.params=publisher\ book
+comment1.target=void\ addBook(kioskprosjekt.Publisher,\ kioskprosjekt.Book)
+comment1.text=\r\n\ Adds\ a\ book\ to\ the\ register.\r\n\ \r\n\ @param\ Publisher\ publisher.\r\n\ @param\ Book\ book.\r\n
+comment2.params=publisherName
+comment2.target=void\ addPublisher(java.lang.String)
+comment3.params=bookName
+comment3.target=java.lang.String\ findBookByName(java.lang.String)
+comment4.params=bookAuthor
+comment4.target=java.lang.String\ findBookByAuthor(java.lang.String)
+comment5.params=publisher
+comment5.target=java.lang.String\ findBookByPublisher(kioskprosjekt.Publisher)
+comment6.params=publisherName
+comment6.target=kioskprosjekt.Publisher\ getPublisher(java.lang.String)
+comment7.params=
+comment7.target=java.lang.String\ getAllBooks()
+numComments=8
