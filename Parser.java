@@ -48,7 +48,7 @@ public class Parser
  * 
  * @return The user's choice as an int.
  */
-    public int menuSelection()
+    public int menuSelection() throws InputMismatchException
     {
         System.out.println("> ");
         int menuChoice = reader.nextInt();

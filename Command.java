@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package kioskprosjekt;
 
 /**
  *
@@ -21,6 +20,7 @@ public class Command
      * @param firstWord The first word of the command. Null if the command
      *                  was not recognised.
      * @param secondWord The second word of the command.
+     * @param thirdWord The third word of the command.
      */
     public Command(String firstWord, String secondWord, String thirdWord)
     {
@@ -47,7 +47,11 @@ public class Command
     {
         return secondWord;
     }
-    
+    /**
+     * 
+     * @return The third word of this command. returns null if there
+     * was no second word.
+     */
     public String getThirdWord()
     {
         return thirdWord;
@@ -68,7 +72,10 @@ public class Command
     {
         return (secondWord != null);
     }
-    
+    /**
+     * 
+     * @return true if the command has a third word. 
+     */
     public boolean hasThirdWord()
     {
         return (thirdWord != null);

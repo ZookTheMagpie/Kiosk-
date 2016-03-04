@@ -1,5 +1,3 @@
-package kioskprosjekt;
-
 
 import java.util.HashMap;
 
@@ -26,8 +24,8 @@ public class Register
     /**
      * Adds a book to the register.
      * 
-     * @param Publisher publisher.
-     * @param Book book.
+     * @param publisher the publisher of the book
+     * @param book the book to add in the register.
      */
     public void addBook(Publisher publisher, Book book)
     {
