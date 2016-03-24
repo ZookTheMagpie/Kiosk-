@@ -51,11 +51,11 @@ public class Kiosk
                         break;
 
                     case 3:
-                        this.findBookByPublisherName();
+                        this.findLLitteratureByPublisherName();
                         break;
 
                     case 4:
-                        this.findBookByTitle();
+                        this.findLitteratureByTitle();
                         break;
 
                     case 5:
@@ -63,7 +63,7 @@ public class Kiosk
                         break;
 
                     case 6:
-                        this.printAllBooks();
+                        this.printAllLitterature();
                         ;
                         break;
 
@@ -140,7 +140,7 @@ public class Kiosk
         System.out.println();
         if (register.getPublisher(publisherName) != null)
         {
-            this.addBookToRegister(title, author, publisherName);
+            this.addLitteratureToRegister(title, author, publisherName);
             System.out.println(title + " added to the store.");
         } else
         {
@@ -153,7 +153,7 @@ public class Kiosk
             if (answer == 1)
             {
                 register.addPublisher(publisherName);
-                this.addBookToRegister(title, author, publisherName);
+                this.addLitteratureToRegister(title, author, publisherName);
                 System.out.println(title + " added to the store.");
             } else
             {
@@ -197,7 +197,7 @@ public class Kiosk
      * @param String author.
      * @param String publisherName.
      */
-    private void addBookToRegister(String title, String author, String publisherName)
+    private void addLitteratureToRegister(String title, String author, String publisherName)
     {
         Publisher publ = register.getPublisher(publisherName);
         if (publ == null)
@@ -219,7 +219,7 @@ public class Kiosk
      *
      * @param String name.
      */
-    private void findBookByPublisherName()
+    private void findLLitteratureByPublisherName()
     {
         System.out.println("What publisher would you like to search by?");
         System.out.println();
@@ -230,35 +230,59 @@ public class Kiosk
             name = parser.getInputString();
         }
         Publisher publ = register.getPublisher(name);
-        String bookDetails;
+        String outputString = name + " has published: ";
         if (publ == null)
         {
-            bookDetails = "There is no publisher with that name.";
+            outputString = "There is no publisher with that name.";
         } else
         {
-            bookDetails = register.findBookByPublisher(publ);
+        Iterator it = register.getLitteratureListIterator();
+        while(it.hasNext())
+        {
+            Litterature litterature = (Litterature) it.next();
+            if(litterature.getPublisher().getName().equals(name))
+            {
+                outputString = outputString + litterature.getInfo() + "/n";
+            }
+        }     
+        if(outputString.equals(name + " has published: "))
+        {
+            outputString = name + " has not published any books.";
         }
-        System.out.println(bookDetails);
+        System.out.println();
+        System.out.println(outputString);
+        }
     }
 
     /**
-     * Allows you to search for a book by its title.
-     *
-     * @param String bookTitle.
+     * Allows you to search for litterature by title.
      */
-    private void findBookByTitle()
+    private void findLitteratureByTitle()
     {
         System.out.println("What title would you like to search by?");
         System.out.println();
         System.out.println("> ");
-        String bookTitle = "";
-        while (bookTitle.trim().equals(""))
+        String litteratureTitle = "";
+        while (litteratureTitle.trim().equals(""))
         {
-            bookTitle = parser.getInputString();
+            litteratureTitle = parser.getInputString();
         }
-        String bookDetails = register.findLitteratureByName(bookTitle);
+        String outputString = null;
+        Iterator it = register.getLitteratureListIterator();
+        while(it.hasNext())
+        {
+            Litterature litterature = (Litterature) it.next();
+            if(litterature.getTitle().equals(litteratureTitle))
+            {
+                outputString = outputString + litterature.getInfo() + "/n";
+            }
+        }
+        if (outputString == null)
+        {
+            outputString = "There is no litterature with that title.";
+        }
         System.out.println();
-        System.out.println(bookDetails);
+        System.out.println(outputString);
     }
 
     /**
@@ -295,10 +319,23 @@ public class Kiosk
     }
 
     /**
-     * Prints out the information for each book in the register.
+     * Prints out the information about all the litterature in the register.
      */
-    private void printAllBooks()
+    private void printAllLitterature()
     {
-        System.out.println(register.getAllBooks());
+        String outputString = null;
+        Iterator it = register.getLitteratureListIterator();
+        while(it.hasNext())
+        {
+            Litterature litterature = (Litterature) it.next();
+            
+            outputString = outputString + litterature.getInfo() + "/n";
+        }
+        if (outputString == null)
+        {
+            outputString = "There is no litterature.";
+        }
+        System.out.println();
+        System.out.println(outputString);
     }
 }
