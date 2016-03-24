@@ -16,6 +16,11 @@ public class Newspaper extends Litterature
         super(title, publisher);
     }
 
+    /**
+     * Puts together a string that holds the information about the newspaper.
+     * 
+     * @return The information about the newspaper
+     */
     @Override
     public String getInfo()
     {

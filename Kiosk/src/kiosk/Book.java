@@ -31,7 +31,12 @@ public class Book extends Litterature
     {
         return author;
     }
-    
+    /**
+     * Puts together a string that holds the information about the book.
+     * 
+     * @return The information about the book
+     */
+    @Override
     public String getInfo()
     {
         String returnString = super.superInfo();
