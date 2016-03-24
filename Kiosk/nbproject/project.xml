@@ -5,9 +5,11 @@
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
             <name>Kiosk</name>
             <source-roots>
-                <root id="src.dir"/>
+                <root id="src.kiosk.dir"/>
             </source-roots>
-            <test-roots/>
+            <test-roots>
+                <root id="test.test.dir"/>
+            </test-roots>
         </data>
     </configuration>
 </project>

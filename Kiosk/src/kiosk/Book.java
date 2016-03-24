@@ -31,5 +31,12 @@ public class Book extends Litterature
     {
         return author;
     }
+    
+    public String getInfo()
+    {
+        String returnString = super.superInfo();
+        returnString = "The Book " + returnString + "/nwritten by " + author;
+        return returnString;
+    }
 
 }
