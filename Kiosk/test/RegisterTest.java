@@ -49,11 +49,11 @@ public class RegisterTest
         Register register1 = new Register();
         Publisher publishe1 = new Publisher("gyldendal");
         Book book1 = new Book("MC", "John", publishe1);
-        register1.addBook(publishe1, book1);
-        assertNotNull(register1.findBookByAuthor("Bob"));
-        assertNotNull(register1.findBookByAuthor("John"));
-        assertNotNull(register1.findBookByName("Harry Potter"));
-        assertNotNull(register1.findBookByName("MC"));
+        register1.addLitterature(publishe1, book1);
+        assertNotNull(register1.findLitteratureByAuthor("Bob"));
+        assertNotNull(register1.findLitteratureByAuthor("John"));
+        assertNotNull(register1.findLitteratureByName("Harry Potter"));
+        assertNotNull(register1.findLitteratureByName("MC"));
         assertNotNull(register1.findBookByPublisher(null));
         assertNotNull(register1.findBookByPublisher(publishe1));
     }

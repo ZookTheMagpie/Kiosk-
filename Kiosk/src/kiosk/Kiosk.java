@@ -1,6 +1,7 @@
 
 import java.util.HashMap;
 import java.util.InputMismatchException;
+import java.util.Iterator;
 
 /**
  * The kiosk class deals with the user interface which allows the user to amongs
@@ -58,7 +59,7 @@ public class Kiosk
                         break;
 
                     case 5:
-                        this.findBookByAuthor();
+                        this.findLitteratureByAuthor();
                         break;
 
                     case 6:
@@ -205,11 +206,11 @@ public class Kiosk
             System.out.println(publisherName + " added to the list of publishers.");
             this.initiatePublisher();
             publ = register.getPublisher(publisherName);
-            register.addBook(publ, new Book(title, author, publ));
+            register.addLitterature(publ, new Book(title, author, publ));
 
         } else
         {
-            register.addBook(publ, new Book(title, author, publ));
+            register.addLitterature(publ, new Book(title, author, publ));
         }
     }
 
@@ -255,29 +256,42 @@ public class Kiosk
         {
             bookTitle = parser.getInputString();
         }
-        String bookDetails = register.findBookByName(bookTitle);
+        String bookDetails = register.findLitteratureByName(bookTitle);
         System.out.println();
         System.out.println(bookDetails);
     }
 
     /**
-     * Allows you to search for a book by its author.
+     * Allows you to search for litterature by its author.
      *
-     * @param String bookAuthor.
+     * @param String litteratureAuthor.
      */
-    private void findBookByAuthor()
+    private void findLitteratureByAuthor()
     {
         System.out.println("What author would you like to search by?");
         System.out.println();
         System.out.println("> ");
-        String bookAuthor = "";
-        while (bookAuthor.trim().equals(""))
+        String litteratureAuthor = "";
+        while (litteratureAuthor.trim().equals(""))
         {
-            bookAuthor = parser.getInputString();
+            litteratureAuthor = parser.getInputString();
         }
-        String bookDetails = register.findBookByAuthor(bookAuthor);
+        String outputString = litteratureAuthor + " has written: ";
+        Iterator it = register.getLitteratureListIterator();
+        while(it.hasNext())
+        {
+            Litterature litterature = (Litterature) it.next();
+            if(litterature.getAuthor().equals(litteratureAuthor))
+            {
+                outputString = outputString + litterature.getInfo() + "/n";
+            }
+        }
+        if (outputString.equals(litteratureAuthor + " has written: "))
+        {
+            outputString = "There is no litterature with that author.";
+        }
         System.out.println();
-        System.out.println(bookDetails);
+        System.out.println(outputString);
     }
 
     /**

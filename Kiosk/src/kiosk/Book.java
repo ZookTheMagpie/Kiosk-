@@ -8,8 +8,6 @@
 public class Book extends Litterature
 {
 
-    private String author;
-
     /**
      *
      * @param title the title of the book.
@@ -18,19 +16,10 @@ public class Book extends Litterature
      */
     public Book(String title, String author, Publisher publisher)
     {
-        super(title, publisher);
-        this.author = author;
+        super(title, author, publisher);
     }
 
-    /**
-     * Returns the author of the book.
-     *
-     * @return The author of the book.
-     */
-    public String getAuthor()
-    {
-        return author;
-    }
+    
     /**
      * Puts together a string that holds the information about the book.
      * 
@@ -39,8 +28,7 @@ public class Book extends Litterature
     @Override
     public String getInfo()
     {
-        String returnString = super.superInfo();
-        returnString = "The Book " + returnString + "/nwritten by " + author;
+        String returnString = "The Book " + super.superInfo();
         return returnString;
     }
 

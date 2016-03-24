@@ -9,11 +9,13 @@ public abstract class Litterature
 {
 
     private String title;
+    private String author;
     private Publisher publisher;
     
-    public Litterature(String title, Publisher publisher)
+    public Litterature(String title, String author, Publisher publisher)
     {
         this.publisher = publisher;
+        this.author = author;
         this.title = title;
     }
 
@@ -25,6 +27,16 @@ public abstract class Litterature
     public String getTitle()
     {
         return title;
+    }
+    
+    /**
+     * Returns the author of the book.
+     *
+     * @return The author of the book.
+     */
+    public String getAuthor()
+    {
+        return author;
     }
 
     /**
@@ -51,7 +63,8 @@ public abstract class Litterature
      */
     public String superInfo()
     {
-        String returnString = title + "/npublished by " + publisher.getName();
+        String returnString = title + "/nwritten by " + author +
+                "/npublished by " + publisher.getName();
         return returnString;
     }
     

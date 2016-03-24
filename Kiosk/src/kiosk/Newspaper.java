@@ -7,9 +7,9 @@
 public class Newspaper extends Litterature
 {
     
-    public Newspaper(String title, Publisher publisher)
+    public Newspaper(String title, String author, Publisher publisher)
     {
-        super(title, publisher);
+        super(title, author, publisher);
     }
 
     /**
@@ -20,8 +20,7 @@ public class Newspaper extends Litterature
     @Override
     public String getInfo()
     {
-        String returnString = super.superInfo();
-        returnString = "The Newspaper " + returnString;
+        String returnString = "The Newspaper " + super.superInfo();
         return returnString;
     }
     
