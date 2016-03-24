@@ -63,8 +63,8 @@ public abstract class Litterature
      */
     public String superInfo()
     {
-        String returnString = title + "/nwritten by " + author +
-                "/npublished by " + publisher.getName();
+        String returnString = title + "\n written by " + author +
+                "\n published by " + publisher.getName();
         return returnString;
     }
     

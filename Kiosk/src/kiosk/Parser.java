@@ -58,6 +58,23 @@ public class Parser
         }
         return menuChoice;
     }
+    
+    /**
+ * This method gets the user's input number and returns it.
+ * The input must be within a specified range.
+ * 
+ * @return The user's choice as an int.
+ */
+    public int litteratureMenuSelection() throws InputMismatchException
+    {
+        if(reader.hasNext()&&!reader.hasNextInt())reader.nextLine();
+        int menuChoice = reader.nextInt();
+        if ((menuChoice < 1) || (menuChoice > 3))
+        {
+            throw new InputMismatchException();
+        }
+        return menuChoice;
+    }
     /**
      * Gets an input from the user and checks if it is 1 or 2.
      * 
