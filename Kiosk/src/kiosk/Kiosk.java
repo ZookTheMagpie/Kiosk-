@@ -190,7 +190,7 @@ public class Kiosk
         int menuSelection = parser.litteratureMenuSelection();
         if (menuSelection == 3)
         {
-            return;
+            System.out.println("Nothing was added.");
         } else
         {
             String title = this.getTitle();
