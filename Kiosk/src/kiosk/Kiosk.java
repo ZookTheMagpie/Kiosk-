@@ -284,7 +284,7 @@ public class Kiosk
                 Litterature litterature = (Litterature) it.next();
                 if (litterature.getPublisher().getName().equals(name))
                 {
-                    outputString = outputString + litterature.getInfo() + "\n";
+                    outputString = outputString + litterature.getInfo() + "/n";
                 }
             }
             if (outputString.equals(name + " has published: "))
@@ -361,7 +361,7 @@ public class Kiosk
         {
             Litterature litterature = (Litterature) it.next();
 
-            outputString = outputString + litterature.getInfo() + "/n";
+            outputString = outputString + litterature.getInfo();
         }
         if (outputString.equals(""))
         {
