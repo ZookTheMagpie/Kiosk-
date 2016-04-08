@@ -63,7 +63,7 @@ public abstract class Litterature
      */
     public String getInfo()
     {
-        String returnString =getType() + "" + title + "\n written by " + author +
+        String returnString =getType() + " " + title + "\n written by " + author +
                 "\n published by " + publisher.getName();
         return returnString;
     }
