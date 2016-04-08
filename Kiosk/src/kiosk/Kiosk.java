@@ -83,7 +83,7 @@ public class Kiosk
     }
 
     /**
-     * This method is responsible for creating a new publisher.
+     * This method adds a new publisher to the register.
      */
     private void initiatePublisher()
     {

@@ -6,17 +6,17 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * The test class RegisterTest.
+ * The test class KioskTest.
  *
  * @author  (your name)
  * @version (a version number or a date)
  */
-public class RegisterTest
+public class KioskTest
 {
     /**
      * Default constructor for test class RegisterTest
      */
-    public RegisterTest()
+    public KioskTest()
     {
     }
 
@@ -46,16 +46,15 @@ public class RegisterTest
      */
     public void testRegister()
     {
-        Register register1 = new Register();
+        Kiosk kiosk1 = new Kiosk();
         Publisher publishe1 = new Publisher("gyldendal");
         Book book1 = new Book("MC", "John", publishe1);
-        register1.addLitterature(publishe1, book1);
-        assertNotNull(register1.findLitteratureByAuthor("Bob"));
-        assertNotNull(register1.findLitteratureByAuthor("John"));
-        assertNotNull(register1.findLitteratureByName("Harry Potter"));
-        assertNotNull(register1.findLitteratureByName("MC"));
-        assertNotNull(register1.findBookByPublisher(null));
-        assertNotNull(register1.findBookByPublisher(publishe1));
+        assertNotNull(kiosk1.findLitteratureByAuthor("Bob"));
+        assertNotNull(kiosk1.findLitteratureByAuthor("John"));
+        assertNotNull(kiosk1.findLitteratureByName("Harry Potter"));
+        assertNotNull(kiosk1.findLitteratureByName("MC"));
+        assertNotNull(kiosk1.findLitteratureByPublisherName(null));
+        assertNotNull(kiosk1.findLitteratureByPublisherName(publishe1));
     }
 }
 
