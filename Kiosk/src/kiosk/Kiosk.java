@@ -181,7 +181,7 @@ public class Kiosk
     {
         this.showLitteratureMenu();
         int menuSelection = parser.litteratureMenuSelection();
-        if (menuSelection == 3)
+        if (menuSelection == 5)
         {
             System.out.println("Nothing was added.");
         } else
@@ -202,7 +202,15 @@ public class Kiosk
                 {
                     register.addLitterature(new Newspaper(title, author, publ));
                 }
-                else if(menuSelection > 3)
+                else if(menuSelection == 3)
+                {
+                    register.addLitterature(new Magazine(title, author, publ));
+                }
+                else if(menuSelection == 4)
+                {
+                    register.addLitterature(new Journal(title, author, publ));
+                }
+                else if(menuSelection > 5)
                 {
                     System.out.println("Please enter a number betwen 1 and 3.");
                 }
@@ -238,7 +246,9 @@ public class Kiosk
         System.out.println("Please choose menu item (1-3): ");
         System.out.println("1. Add book.");
         System.out.println("2. Add Newspaper.");
-        System.out.println("3. Go back.");
+        System.out.println("3. Add Magazine.");
+        System.out.println("4. Add Journal.");
+        System.out.println("5. Go back.");
         System.out.println();
         System.out.println("> ");
     }
