@@ -98,10 +98,11 @@ public class Kiosk
         }
         return input;
     }
+
     /**
      * This method adds a new publisher to the register.
      */
-    
+
     private void initiatePublisher()
     {
         String publisherName;
@@ -125,7 +126,7 @@ public class Kiosk
         publisherName = getUserinput();
         System.out.println();
         Publisher publ = register.getPublisher(publisherName);
-         if(publ == null)
+        if (publ == null)
         {
             System.out.println("There is no publisher with that name, would you like to add one?");
             System.out.println("1. Yes.");
@@ -143,7 +144,7 @@ public class Kiosk
                 System.out.println();
             }
         }
-         return publ;
+        return publ;
     }
 
     /**
@@ -194,27 +195,26 @@ public class Kiosk
                 System.out.println(title + "was not added to the store.");
             } else
             {
-                if(menuSelection == 1)
+                if (menuSelection == 1)
                 {
-                register.addLitterature(new Book(title, author, publ));
-                }
-                else if(menuSelection == 2)
+                    register.addLitterature(new Book(title, author, publ));
+                } else if (menuSelection == 2)
                 {
                     register.addLitterature(new Newspaper(title, author, publ));
-                }
-                else if(menuSelection == 3)
+                } else if (menuSelection == 3)
                 {
                     register.addLitterature(new Magazine(title, author, publ));
-                }
-                else if(menuSelection == 4)
+                } else if (menuSelection == 4)
                 {
                     register.addLitterature(new Journal(title, author, publ));
-                }
-                else if(menuSelection > 5)
+                } else if (menuSelection > 5)
                 {
                     System.out.println("Please enter a number betwen 1 and 5");
                 }
-                System.out.println(title + " was added to the store.");
+                if (menuSelection != 5)
+                {
+                    System.out.println(title + " was added to the store.");
+                }
             }
         }
     }
