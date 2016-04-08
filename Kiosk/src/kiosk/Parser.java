@@ -69,7 +69,7 @@ public class Parser
     {
         if(reader.hasNext()&&!reader.hasNextInt())reader.nextLine();
         int menuChoice = reader.nextInt();
-        if ((menuChoice < 1) || (menuChoice > 6))
+        if ((menuChoice < 1) || (menuChoice > 5))
         {
             throw new InputMismatchException();
         }
