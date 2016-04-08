@@ -83,26 +83,6 @@ public class Kiosk
     }
 
     /**
-     * This method adds a new publisher to the register.
-     */
-    private void initiatePublisher()
-    {
-        String publisherName;
-        System.out.println("Please enter the name of the publisher.");
-        System.out.println();
-        System.out.println("> ");
-        publisherName = "";
-        while (publisherName.trim().equals(""))
-        {
-            publisherName = parser.getInputString();
-        }
-
-        register.addPublisher(publisherName);
-        System.out.println(publisherName + " added as a publisher.");
-        System.out.println();
-    }
-
-    /**
      * This method gets an input from the user
      *
      * @return The input from the user as a string
@@ -120,6 +100,20 @@ public class Kiosk
     }
 
     /**
+     * This method adds a new publisher to the register.
+     */
+
+    private void initiatePublisher()
+    {
+        String publisherName;
+        System.out.println("Please enter the name of the publisher.");
+        publisherName = this.getUserinput();
+        register.addPublisher(publisherName);
+        System.out.println(publisherName + " added as a publisher.");
+        System.out.println();
+    }
+
+    /**
      * Gets the publisher for the new litterature, if the publisher doesn't
      * exist, you have the choice of creating one.
      */
@@ -132,7 +126,7 @@ public class Kiosk
         publisherName = getUserinput();
         System.out.println();
         Publisher publ = register.getPublisher(publisherName);
-         if(publ == null)
+        if (publ == null)
         {
             System.out.println("There is no publisher with that name, would you like to add one?");
             System.out.println("1. Yes.");
@@ -150,7 +144,7 @@ public class Kiosk
                 System.out.println();
             }
         }
-         return publ;
+        return publ;
     }
 
     /**
@@ -188,7 +182,7 @@ public class Kiosk
     {
         this.showLitteratureMenu();
         int menuSelection = parser.litteratureMenuSelection();
-        if (menuSelection == 3)
+        if (menuSelection == 5)
         {
             System.out.println("Nothing was added.");
         } else
@@ -201,15 +195,26 @@ public class Kiosk
                 System.out.println(title + "was not added to the store.");
             } else
             {
-                if(menuSelection == 1)
+                if (menuSelection == 1)
                 {
-                register.addLitterature(new Book(title, author, publ));
-                }
-                else if(menuSelection == 2)
+                    register.addLitterature(new Book(title, author, publ));
+                } else if (menuSelection == 2)
                 {
                     register.addLitterature(new Newspaper(title, author, publ));
+                } else if (menuSelection == 3)
+                {
+                    register.addLitterature(new Magazine(title, author, publ));
+                } else if (menuSelection == 4)
+                {
+                    register.addLitterature(new Journal(title, author, publ));
+                } else if (menuSelection > 5)
+                {
+                    System.out.println("Please enter a number betwen 1 and 5");
                 }
-                System.out.println(title + " was added to the store.");
+                if (menuSelection != 5)
+                {
+                    System.out.println(title + " was added to the store.");
+                }
             }
         }
     }
@@ -241,7 +246,9 @@ public class Kiosk
         System.out.println("Please choose menu item (1-3): ");
         System.out.println("1. Add book.");
         System.out.println("2. Add Newspaper.");
-        System.out.println("3. Go back.");
+        System.out.println("3. Add Magazine.");
+        System.out.println("4. Add Journal.");
+        System.out.println("5. Go back.");
         System.out.println();
         System.out.println("> ");
     }
@@ -354,7 +361,7 @@ public class Kiosk
         {
             Litterature litterature = (Litterature) it.next();
 
-            outputString = outputString + litterature.getInfo() + "/n";
+            outputString = outputString + litterature.getInfo();
         }
         if (outputString.equals(""))
         {

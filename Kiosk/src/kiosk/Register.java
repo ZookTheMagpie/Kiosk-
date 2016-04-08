@@ -57,11 +57,11 @@ public class Register
     }
     
     /**
-     * Returns the publisher with the given name, null if there is no with that
+     * Returns the publisher with the given name, null if there is no one with that
      * name.
      *
      * @param publisherName Name of the publisher.
-     * @return The publisher with the given name, null if ther is no with that
+     * @return The publisher with the given name, null if there is no one with that
      * name
      */
     public Publisher getPublisher(String publisherName)

@@ -1,5 +1,3 @@
-;
-
 /**
  * This class contains the information that defines a book.
  *
@@ -21,15 +19,14 @@ public class Book extends Litterature
 
     
     /**
-     * Puts together a string that holds the information about the book.
+     * returns the type book, to be used in sentences like, "The book title by author".
      * 
-     * @return The information about the book
+     * @return The string "The book".
      */
     @Override
-    public String getInfo()
+    public String getType()
     {
-        String returnString = "The Book " + super.superInfo();
-        return returnString;
+        return "The book";
     }
 
 }
