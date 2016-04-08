@@ -212,7 +212,7 @@ public class Kiosk
                 }
                 else if(menuSelection > 5)
                 {
-                    System.out.println("Please enter a number betwen 1 and 3.");
+                    System.out.println("Please enter a number betwen 1 and 5");
                 }
                 System.out.println(title + " was added to the store.");
             }
@@ -284,7 +284,7 @@ public class Kiosk
                 Litterature litterature = (Litterature) it.next();
                 if (litterature.getPublisher().getName().equals(name))
                 {
-                    outputString = outputString + litterature.getInfo() + "/n";
+                    outputString = outputString + litterature.getInfo() + "\n";
                 }
             }
             if (outputString.equals(name + " has published: "))
