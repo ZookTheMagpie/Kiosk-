@@ -202,6 +202,10 @@ public class Kiosk
                 {
                     register.addLitterature(new Newspaper(title, author, publ));
                 }
+                else if(menuSelection > 3)
+                {
+                    System.out.println("Please enter a number betwen 1 and 3.");
+                }
                 System.out.println(title + " was added to the store.");
             }
         }
