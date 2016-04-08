@@ -83,26 +83,6 @@ public class Kiosk
     }
 
     /**
-     * This method adds a new publisher to the register.
-     */
-    private void initiatePublisher()
-    {
-        String publisherName;
-        System.out.println("Please enter the name of the publisher.");
-        System.out.println();
-        System.out.println("> ");
-        publisherName = "";
-        while (publisherName.trim().equals(""))
-        {
-            publisherName = parser.getInputString();
-        }
-
-        register.addPublisher(publisherName);
-        System.out.println(publisherName + " added as a publisher.");
-        System.out.println();
-    }
-
-    /**
      * This method gets an input from the user
      *
      * @return The input from the user as a string
@@ -117,6 +97,19 @@ public class Kiosk
             input = parser.getInputString();
         }
         return input;
+    }
+    /**
+     * This method adds a new publisher to the register.
+     */
+    
+    private void initiatePublisher()
+    {
+        String publisherName;
+        System.out.println("Please enter the name of the publisher.");
+        publisherName = this.getUserinput();
+        register.addPublisher(publisherName);
+        System.out.println(publisherName + " added as a publisher.");
+        System.out.println();
     }
 
     /**
