@@ -1,5 +1,3 @@
-;
-
 /**
  * This class contains the information that defines a book.
  *
