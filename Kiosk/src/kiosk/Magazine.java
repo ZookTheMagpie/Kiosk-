@@ -13,16 +13,15 @@ public class Magazine extends Litterature
         super(title, author, publisher);
     }
 
-    /**
-     * Puts together a string that holds the information about the magazine.
+   /**
+     * returns the type Magazine, to be used in sentences like, "The Magazine title by author".
      * 
-     * @return The information about the magazine
+     * @return The string "The magazine".
      */
     @Override
-    public String getInfo()
+    public String getType()
     {
-        String returnString = "The Magazine " + super.superInfo();
-        return returnString;
+        return "The magazine";
     }
     
 }

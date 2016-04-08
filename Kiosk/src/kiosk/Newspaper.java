@@ -12,16 +12,15 @@ public class Newspaper extends Litterature
         super(title, author, publisher);
     }
 
-    /**
-     * Puts together a string that holds the information about the newspaper.
+   /**
+     * returns the type newspaper, to be used in sentences like, "The newspaper title by author".
      * 
-     * @return The information about the newspaper
+     * @return The string "The newspaper".
      */
     @Override
-    public String getInfo()
+    public String getType()
     {
-        String returnString = "The Newspaper " + super.superInfo();
-        return returnString;
+        return "The newspaper";
     }
     
 }

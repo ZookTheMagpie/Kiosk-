@@ -50,20 +50,20 @@ public abstract class Litterature
     }
     
     /**
-     * Returns the information about the book in a string.
+     * Returns the type of the litterature as a string. To be used in sentences.
      * 
-     * @return The information about the litterature. 
+     * @return The type of the litterature.
      */
-    public abstract String getInfo();
+    public abstract String getType();
     
     /**
-     * Starts building an information string about the litterature, must be finished elsewhere.
+     * Builds the information about the litterature into a string that it returns.
      * 
-     * @return The information about the litterature avaliable in this super class. 
+     * @return The information about the litterature.
      */
-    public String superInfo()
+    public String getInfo()
     {
-        String returnString = title + "\n written by " + author +
+        String returnString =getType() + "" + title + "\n written by " + author +
                 "\n published by " + publisher.getName();
         return returnString;
     }

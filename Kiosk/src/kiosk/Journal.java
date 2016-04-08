@@ -11,15 +11,14 @@ public class Journal extends Litterature
         super(title, author, publisher);
     }
 
-    /**
-     * Puts together a string that holds the information about the journal.
+   /**
+     * returns the type journal, to be used in sentences like, "The journal title by author".
      * 
-     * @return The information about the journal
+     * @return The string "The journal".
      */
     @Override
-    public String getInfo()
+    public String getType()
     {
-        String returnString = "The Journal " + super.superInfo();
-        return returnString;
+        return "The journal";
     }
 }
