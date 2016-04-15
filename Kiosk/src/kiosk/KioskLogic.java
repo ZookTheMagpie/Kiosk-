@@ -69,15 +69,20 @@ public class KioskLogic
             case 4:
                 register.addLitterature(new Journal(title, author, publ));
                 break;
+                
+            default:
+                throw new IllegalArgumentException("Unknown selection: " + menuSelection);
         }
     }
 
     /**
      * Finds all the litterature that has a connection with the given search
      * condition and returns the info about them.
+     *
      * @param searchCondition the string you would like to search by
-     * @param searchType The type of search you would like to make (by publisher, author or title)
-     * 
+     * @param searchType The type of search you would like to make (by
+     * publisher, author or title)
+     *
      * @return the info of all the litterature found as a string
      */
     public String findLitterature(String searchCondition, String searchType)
@@ -87,33 +92,35 @@ public class KioskLogic
         while (it.hasNext())
         {
             Litterature litterature = (Litterature) it.next();
-            if (searchType.equals("publisher"))
+            String value;
+            switch (searchType)
             {
-                if (litterature.getPublisher().getName().equals(searchCondition))
-                {
-                    returnString = returnString + litterature.getInfo() + "\n\n";
-                }
-            } else if (searchType.equals("title"))
+                case "publisher":
+                    value = litterature.getPublisher().getName();
+                    break;
+                case "title":
+                    value = litterature.getTitle();
+                    break;
+                case "author":
+                    value = litterature.getAuthor();
+                    break;
+                default:
+                    throw new IllegalArgumentException("Unknown type " + searchType);
+            }
+            if (value.equals(searchCondition))
             {
-                if (litterature.getTitle().equals(searchCondition))
-                {
-                    returnString = returnString + litterature.getInfo() + "\n\n";
-                }
-            } else if (searchType.equals("author"))
-            {
-                if (litterature.getAuthor().equals(searchCondition))
-                {
-                    returnString = returnString + litterature.getInfo() + "\n\n";
-                }
+                returnString = returnString + litterature.getInfo() + "\n\n";
             }
         }
         return returnString;
     }
-    
+
     /**
-     * Returns the information about all the litterature in the store as a string.
-     * 
-     * @return The information about all the litterature in the store as a string
+     * Returns the information about all the litterature in the store as a
+     * string.
+     *
+     * @return The information about all the litterature in the store as a
+     * string
      */
     public String getAllLitterature()
     {
