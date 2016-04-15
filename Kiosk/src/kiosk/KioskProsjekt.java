@@ -15,7 +15,7 @@ public class KioskProsjekt {
      */
     public static void main(String[] args) 
     {
-        Kiosk kiosk = new Kiosk();
+        KioskUI kiosk = new KioskUI();
         kiosk.start();
     }
     

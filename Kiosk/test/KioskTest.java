@@ -46,7 +46,7 @@ public class KioskTest
      */
     public void testRegister()
     {
-        Kiosk kiosk1 = new Kiosk();
+        KioskUI kiosk1 = new KioskUI();
         Publisher publishe1 = new Publisher("gyldendal");
         Book book1 = new Book("MC", "John", publishe1);
         assertNotNull(kiosk1.findLitteratureByAuthor("Bob"));
