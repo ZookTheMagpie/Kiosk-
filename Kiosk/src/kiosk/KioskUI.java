@@ -11,8 +11,6 @@ import java.util.Iterator;
  */
 public class KioskUI
 {
-
-//    private Register register;
     private Parser parser;
     private KioskLogic kioskL;
 
@@ -21,7 +19,6 @@ public class KioskUI
      */
     public KioskUI()
     {
-//        register = new Register();
         parser = new Parser();
         kioskL = new KioskLogic();
     }
