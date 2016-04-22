@@ -1,4 +1,5 @@
 
+import java.util.HashSet;
 import java.util.Iterator;
 
 /**
@@ -18,6 +19,16 @@ public class KioskLogic
     {
         register = new Register();
         parser = new Parser();
+    }
+    
+    /**
+     * returns the list of litterature
+     * 
+     * @return the list of litterature 
+     */
+    public HashSet<Litterature> getLitteratureList()
+    {
+        return register.getLitteratureList();
     }
 
     /**
