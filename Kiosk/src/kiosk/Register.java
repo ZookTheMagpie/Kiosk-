@@ -12,7 +12,7 @@ import java.util.Iterator;
 public class Register
 {
 
-    private HashSet<Litterature> LitteratureList;
+    private HashSet<Litterature> litteratureList;
     private HashMap<String, Publisher> publishers;
 
     /**
@@ -20,8 +20,17 @@ public class Register
      */
     public Register()
     {
-        LitteratureList = new HashSet<>();
+        litteratureList = new HashSet<>();
         publishers = new HashMap<>();
+    }
+    
+    /**
+     * returns the list of litterature
+     * @return the list of litterature
+     */
+    public HashSet<Litterature> getLitteratureList()
+    {
+        return litteratureList;
     }
 
     /**
@@ -31,7 +40,7 @@ public class Register
      */
     public void addLitterature(Litterature litterature)
     {
-        LitteratureList.add(litterature);
+        litteratureList.add(litterature);
     }
 
     /**
@@ -46,13 +55,13 @@ public class Register
 
 
     /**
-     * Returns the iterator of the LitteratureList
+     * Returns the iterator of the litteratureList
      * 
-     * @return The iterator of the LitteratureList
+     * @return The iterator of the litteratureList
      */
     public Iterator getLitteratureListIterator()
     {
-        Iterator<Litterature> it= LitteratureList.iterator();
+        Iterator<Litterature> it= litteratureList.iterator();
         return it;
     }
     
