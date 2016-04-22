@@ -11,6 +11,7 @@ import java.util.Iterator;
  */
 public class KioskUI
 {
+
     private Parser parser;
     private KioskLogic kioskL;
 
@@ -67,7 +68,7 @@ public class KioskUI
                     case 6:
                         this.printAllLitterature();
                         break;
-                        
+
                     case 7:
                         System.out.println("What would you like to search for?");
                         this.searchLitterature(this.getUserinput());
@@ -254,9 +255,9 @@ public class KioskUI
     }
 
     /**
-     * This method combines all the aspects of searching for litterature, and automatically searches for
-     * author, title and publisher.
-     * 
+     * This method combines all the aspects of searching for litterature, and
+     * automatically searches for author, title and publisher.
+     *
      * @param String searchWord
      */
     private void searchLitterature(String searchWord)
@@ -265,16 +266,15 @@ public class KioskUI
         outputString = outputString + kioskL.findLitterature(searchWord, "title");
         outputString = outputString + kioskL.findLitterature(searchWord, "publisher");
         outputString = outputString + kioskL.findLitterature(searchWord, "author");
-        if(outputString.equals(""))
-        {
-        System.out.println("outputString");
-        }
-        else
+        if (outputString.equals(""))
         {
             System.out.println("No litterature were found");
+        } else
+        {
+            System.out.println(outputString);
         }
     }
-    
+
     /**
      * Allows you to search for litterature by the publisher.
      *
@@ -282,7 +282,7 @@ public class KioskUI
      */
     private void findLitteratureByPublisherName(String publisherName)
     {
-        
+
         Publisher publ = kioskL.getPublisher(publisherName);
         String outputString = "";
         if (publ == null)
@@ -302,7 +302,7 @@ public class KioskUI
 
     /**
      * Allows you to search for litterature by title.
-     * 
+     *
      * @param String title of the litterature
      */
     private void findLitteratureByTitle(String litteratureTitle)
