@@ -129,9 +129,9 @@ public class KioskLogic
                 case "title":
                     value = literature.getTitle();
                     break;
-//                case "author":
-//                    value = literature.getAuthor();
-//                    break;
+                case "author":
+                    value = literature.getAuthor();
+                    break;
                 default:
                     throw new IllegalArgumentException("Unknown type " + searchType);
             }
