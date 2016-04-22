@@ -206,7 +206,7 @@ public class KioskUI
                         litChoice = "journal";
                     }
                     String author = this.getAuthor();
-                    kioskL.addLitteratureWithAuthorToRegister(litChoice, author, title, publ);
+//                    kioskL.addLiteratureWithAuthorToRegister(litChoice, author, title, publ);
                 } else if (publ == null)
                 {
                     System.out.println(title + "was not added to the store.");
@@ -220,7 +220,7 @@ public class KioskUI
                     {
                         litChoice = "magazine";
                     }
-                    kioskL.addLitteratureToRegister(litChoice, title, publ);
+//                    kioskL.addLitteratureToRegister(litChoice, title, publ);
                     System.out.println(title + " was added to the store.");
                 }
             }
@@ -283,9 +283,9 @@ public class KioskUI
     private void searchLitterature(String searchWord)
     {
         String outputString = "";
-        outputString = outputString + kioskL.findLitterature(searchWord, "title");
-        outputString = outputString + kioskL.findLitterature(searchWord, "publisher");
-        outputString = outputString + kioskL.findLitterature(searchWord, "author");
+//        outputString = outputString + kioskL.findLitterature(searchWord, "title");
+//        outputString = outputString + kioskL.findLitterature(searchWord, "publisher");
+//        outputString = outputString + kioskL.findLitterature(searchWord, "author");
         if (outputString.equals(""))
         {
             System.out.println("No litterature were found");
@@ -310,7 +310,7 @@ public class KioskUI
             outputString = "There is no publisher with that name.";
         } else
         {
-            outputString = "The litterature found were: " + kioskL.findLitterature(publisherName, "publisher");
+//            outputString = "The litterature found were: " + kioskL.findLitterature(publisherName, "publisher");
             if (outputString.equals("The litterature found were: "))
             {
                 outputString = publisherName + " has not published anything.";
@@ -328,7 +328,7 @@ public class KioskUI
     private void findLitteratureByTitle(String litteratureTitle)
     {
         String outputString = "";
-        outputString = "The litterature found were: " + kioskL.findLitterature(litteratureTitle, "title");
+//        outputString = "The litterature found were: " + kioskL.findLitterature(litteratureTitle, "title");
         if (outputString.equals("The litterature found were: "))
         {
             outputString = "There is no litterature with that title.";
@@ -345,7 +345,7 @@ public class KioskUI
     private void findLitteratureByAuthor(String litteratureAuthor)
     {
         String outputString = "";
-        outputString = "The litterature found were: " + kioskL.findLitterature(litteratureAuthor, "author");
+//        outputString = "The litterature found were: " + kioskL.findLitterature(litteratureAuthor, "author");
         if (outputString.equals("The litterature found were: "))
         {
             outputString = "There is no litterature with that author.";
@@ -359,8 +359,8 @@ public class KioskUI
      */
     private void printAllLitterature()
     {
-        String outputString = kioskL.getAllLitterature();
+//        String outputString = kioskL.getAllLitterature();
         System.out.println();
-        System.out.println(outputString);
+//        System.out.println(outputString);
     }
 }
