@@ -28,4 +28,14 @@ public class Publisher
     {
         return name;
     }
+    
+    /**
+     * This method is overriden to simplify showing the name of the publisher in the GUI table.
+     * @return the name of the publisher
+     */
+    @Override
+    public String toString()
+    {
+        return getName();
+    }
 }
