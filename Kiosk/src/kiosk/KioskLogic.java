@@ -60,15 +60,15 @@ public class KioskLogic
      * @param title title of the litterature to add
      * @param publ publisher of thelitterature to add
      */
-    public void addLitteratureToRegister(int menuSelection, String title, Publisher publ)
+    public void addLitteratureToRegister(String menuSelection, String title, Publisher publ)
     {
         switch (menuSelection)
         {
-            case 2:
+            case "newspaper":
                 register.addLitterature(new Newspaper(title, publ));
                 break;
 
-            case 3:
+            case "magazine":
                 register.addLitterature(new Magazine(title, publ));
                 break;
 
@@ -85,15 +85,15 @@ public class KioskLogic
      * @param author author of the litterature to add
      * @param publ publisher of thelitterature to add
      */
-    public void addLitteratureWithAuthorToRegister(int menuSelection, String title, String author, Publisher publ)
+    public void addLitteratureWithAuthorToRegister(String menuSelection, String title, String author, Publisher publ)
     {
         switch (menuSelection)
         {
-            case 1:
+            case "book":
                 register.addLitterature(new Book(title, author, publ));
                 break;
 
-            case 4:
+            case "journal":
                 register.addLitterature(new Journal(title, author, publ));
                 break;
                 
