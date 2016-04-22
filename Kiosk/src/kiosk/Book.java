@@ -1,11 +1,14 @@
 /**
  * This class contains the information that defines a book.
  *
- * @author HaIIvard
+ * @author HaIIvard & Alexander Eilert Berg
+ * @version 0.3
  */
 public class Book extends Litterature
 {
 
+    private String author;
+    
     /**
      *
      * @param title the title of the book.
@@ -14,7 +17,8 @@ public class Book extends Litterature
      */
     public Book(String title, String author, Publisher publisher)
     {
-        super(title, author, publisher);
+        super(title, publisher);
+        this.author = author;
     }
 
     
@@ -27,6 +31,17 @@ public class Book extends Litterature
     public String getType()
     {
         return "The book";
+    }
+    
+    /**
+     * Returns the author of the book.
+     *
+     * @return The author of the book.
+     */
+    @Override
+    public String getAuthor()
+    {
+        return "\n written by " + author;
     }
 
 }

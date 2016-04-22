@@ -2,14 +2,15 @@
 /**
  * This class contains the information that defines a newspaper.
  *
- * @author HaIIvard
+ * @author HaIIvard & Alexander Eilert Berg 
+ * @version 0.3
  */
 public class Newspaper extends Litterature
 {
     
-    public Newspaper(String title, String author, Publisher publisher)
+    public Newspaper(String title, Publisher publisher)
     {
-        super(title, author, publisher);
+        super(title, publisher);
     }
 
    /**
@@ -21,6 +22,17 @@ public class Newspaper extends Litterature
     public String getType()
     {
         return "The newspaper";
+    }
+
+    /**
+     *  Newspaper has currently no author and therfore returns an empty string.
+     * @return Returns an empty string.
+     */
+    @Override
+    public String getAuthor()
+    {
+        String string = "";
+        return string;
     }
     
 }

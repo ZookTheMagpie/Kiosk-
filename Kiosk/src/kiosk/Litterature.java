@@ -9,13 +9,12 @@ public abstract class Litterature
 {
 
     private String title;
-    private String author;
+    
     private Publisher publisher;
     
-    public Litterature(String title, String author, Publisher publisher)
+    public Litterature(String title, Publisher publisher)
     {
         this.publisher = publisher;
-        this.author = author;
         this.title = title;
     }
 
@@ -28,16 +27,6 @@ public abstract class Litterature
     {
         return title;
     }
-    
-    /**
-     * Returns the author of the book.
-     *
-     * @return The author of the book.
-     */
-    public String getAuthor()
-    {
-        return author;
-    }
 
     /**
      * Returns the publisher of the book.
@@ -48,6 +37,13 @@ public abstract class Litterature
     {
         return publisher;
     }
+    
+    /**
+     * Returns the author of the litterature as a string. To be used in sentences.
+     * 
+     * @return The author of the litterature.
+     */
+    public abstract String getAuthor();
     
     /**
      * Returns the type of the litterature as a string. To be used in sentences.
@@ -63,7 +59,7 @@ public abstract class Litterature
      */
     public String getInfo()
     {
-        String returnString =getType() + " " + title + "\n written by " + author +
+        String returnString =getType() + " " + title + getAuthor() +
                 "\n published by " + publisher.getName();
         return returnString;
     }

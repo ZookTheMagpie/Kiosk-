@@ -8,9 +8,9 @@
 public class Magazine extends Litterature
 {
 
-    public Magazine(String title, String author, Publisher publisher)
+    public Magazine(String title,Publisher publisher)
     {
-        super(title, author, publisher);
+        super(title, publisher);
     }
 
    /**
@@ -23,5 +23,15 @@ public class Magazine extends Litterature
     {
         return "The magazine";
     }
-    
+        
+    /**
+     *  Magazine has currently no author and therfore returns an empty string.
+     * @return Returns an empty string.
+     */
+    @Override
+    public String getAuthor()
+    {
+        String string = "";
+        return string;
+    }
 }

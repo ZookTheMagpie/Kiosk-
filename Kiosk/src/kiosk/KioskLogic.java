@@ -59,11 +59,11 @@ public class KioskLogic
                 break;
 
             case 2:
-                register.addLitterature(new Newspaper(title, author, publ));
+                register.addLitterature(new Newspaper(title, publ));
                 break;
 
             case 3:
-                register.addLitterature(new Magazine(title, author, publ));
+                register.addLitterature(new Magazine(title, publ));
                 break;
 
             case 4:
