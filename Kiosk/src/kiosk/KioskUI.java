@@ -12,7 +12,6 @@ import java.util.Iterator;
 public class KioskUI
 {
 
-//    private Register register;
     private Parser parser;
     private KioskLogic kioskL;
 
@@ -21,7 +20,6 @@ public class KioskUI
      */
     public KioskUI()
     {
-//        register = new Register();
         parser = new Parser();
         kioskL = new KioskLogic();
     }
@@ -48,27 +46,35 @@ public class KioskUI
                         break;
 
                     case 2:
-                        this.initiatePublisher();
+                        System.out.println("Please enter the name of the publisher.");
+                        this.initiatePublisher(this.getUserinput());
                         break;
 
                     case 3:
-                        this.findLitteratureByPublisherName();
+                        System.out.println("What publisher would you like to search by?");
+                        this.findLitteratureByPublisherName(this.getUserinput());
                         break;
 
                     case 4:
-                        this.findLitteratureByTitle();
+                        System.out.println("What title would you like to search by?");
+                        this.findLitteratureByTitle(this.getUserinput());
                         break;
 
                     case 5:
-                        this.findLitteratureByAuthor();
+                        System.out.println("What author would you like to search by?");
+                        this.findLitteratureByAuthor(this.getUserinput());
                         break;
 
                     case 6:
                         this.printAllLitterature();
-                        ;
                         break;
 
                     case 7:
+                        System.out.println("What would you like to search for?");
+                        this.searchLitterature(this.getUserinput());
+                        break;
+
+                    case 8:
                         System.out.println("\nThank you for using Application v1.0. Bye!\n");
                         finished = true;
                         break;
@@ -77,7 +83,7 @@ public class KioskUI
                 }
             } catch (InputMismatchException ime)
             {
-                System.out.println("\nERROR: Please provide a number between 1 and 7..\n");
+                System.out.println("\nERROR: Please provide a number between 1 and 8..\n");
             }
         }
         System.out.println("Good bye.");
@@ -103,11 +109,8 @@ public class KioskUI
     /**
      * This method adds a new publisher to the register.
      */
-    private void initiatePublisher()
+    private void initiatePublisher(String publisherName)
     {
-        String publisherName;
-        System.out.println("Please enter the name of the publisher.");
-        publisherName = this.getUserinput();
         kioskL.addPublisherToRegister(publisherName);
         System.out.println(publisherName + " added as a publisher.");
         System.out.println();
@@ -121,10 +124,8 @@ public class KioskUI
      */
     private Publisher getPublisher()
     {
-
         String publisherName = "";
-
-        System.out.println("Please enter the publisher.");
+        System.out.println("Please enter the name of the publisher");
         publisherName = getUserinput();
         System.out.println();
         Publisher publ = kioskL.getPublisher(publisherName);
@@ -215,14 +216,15 @@ public class KioskUI
     private void showMenu()
     {
         System.out.println();
-        System.out.println("Please choose menu item (1-7): ");
+        System.out.println("Please choose menu item (1-8): ");
         System.out.println("1. Add litterature.");
         System.out.println("2. Add publisher.");
         System.out.println("3. Find litterature by publisher.");
         System.out.println("4. Find litterature by title.");
         System.out.println("5. Find litterature by author.");
-        System.out.println("6. Print all litterature");
-        System.out.println("7. Quit.");
+        System.out.println("6. Print all litterature.");
+        System.out.println("7. Search for litterature.");
+        System.out.println("8. Quit.");
         System.out.println();
         System.out.println("> ");
     }
@@ -253,25 +255,45 @@ public class KioskUI
     }
 
     /**
+     * This method combines all the aspects of searching for litterature, and
+     * automatically searches for author, title and publisher.
+     *
+     * @param String searchWord
+     */
+    private void searchLitterature(String searchWord)
+    {
+        String outputString = "";
+        outputString = outputString + kioskL.findLitterature(searchWord, "title");
+        outputString = outputString + kioskL.findLitterature(searchWord, "publisher");
+        outputString = outputString + kioskL.findLitterature(searchWord, "author");
+        if (outputString.equals(""))
+        {
+            System.out.println("No litterature were found");
+        } else
+        {
+            System.out.println(outputString);
+        }
+    }
+
+    /**
      * Allows you to search for litterature by the publisher.
      *
      * @param String name.
      */
-    private void findLitteratureByPublisherName()
+    private void findLitteratureByPublisherName(String publisherName)
     {
-        System.out.println("What publisher would you like to search by?");
-        String name = getUserinput();
-        Publisher publ = kioskL.getPublisher(name);
+
+        Publisher publ = kioskL.getPublisher(publisherName);
         String outputString = "";
         if (publ == null)
         {
             outputString = "There is no publisher with that name.";
         } else
         {
-            outputString = "The litterature found were: " + kioskL.findLitterature(name, "publisher");
+            outputString = "The litterature found were: " + kioskL.findLitterature(publisherName, "publisher");
             if (outputString.equals("The litterature found were: "))
             {
-                outputString = name + " has not published anything.";
+                outputString = publisherName + " has not published anything.";
             }
         }
         System.out.println();
@@ -280,11 +302,11 @@ public class KioskUI
 
     /**
      * Allows you to search for litterature by title.
+     *
+     * @param String title of the litterature
      */
-    private void findLitteratureByTitle()
+    private void findLitteratureByTitle(String litteratureTitle)
     {
-        System.out.println("What title would you like to search by?");
-        String litteratureTitle = getUserinput();
         String outputString = "";
         outputString = "The litterature found were: " + kioskL.findLitterature(litteratureTitle, "title");
         if (outputString.equals("The litterature found were: "))
@@ -300,10 +322,8 @@ public class KioskUI
      *
      * @param String litteratureAuthor.
      */
-    private void findLitteratureByAuthor()
+    private void findLitteratureByAuthor(String litteratureAuthor)
     {
-        System.out.println("What author would you like to search by?");
-        String litteratureAuthor = getUserinput();
         String outputString = "";
         outputString = "The litterature found were: " + kioskL.findLitterature(litteratureAuthor, "author");
         if (outputString.equals("The litterature found were: "))
