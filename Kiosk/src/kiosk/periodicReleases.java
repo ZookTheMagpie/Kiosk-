@@ -43,6 +43,16 @@ public abstract class periodicReleases extends Literature
     }
     
     /**
+     * Returns a string.
+     * @return Returns a string. 
+     */
+    @Override
+    public String getAuthor()
+    {
+        return "This publication have no author";
+    }
+    
+    /**
      * Returns details about the paper.
      * @return Returns details about the paper.
      */

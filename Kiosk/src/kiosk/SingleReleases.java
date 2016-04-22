@@ -32,6 +32,7 @@ public abstract class SingleReleases extends Literature
      * sentences.
      * @return The author of the publication.
      */
+    @Override
     public String getAuthor()
     {
         return this.author;

@@ -54,6 +54,11 @@ public abstract class Literature
     public abstract String getDetails();
     
     /**
+     * Returns the author.
+     */
+    public abstract String getAuthor();
+    
+    /**
      * Builds the information about the literature into a string that it returns.
      * @return The information about the literature.
      */
