@@ -6,7 +6,7 @@
  * @author Alexander Eilert Berg
  * @version 0.1
  */
-public abstract class SingleReleases extends Litterature
+public abstract class SingleReleases extends Literature
 {
 
     private String author;

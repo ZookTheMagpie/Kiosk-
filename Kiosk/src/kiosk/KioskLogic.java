@@ -7,7 +7,8 @@ import java.util.Iterator;
  */
 /**
  *
- * @author HaIIvard
+ * @author HaIIvard & Alexander Eilert Berg
+ * @version 0.2
  */
 public class KioskLogic
 {
@@ -22,13 +23,13 @@ public class KioskLogic
     }
     
     /**
-     * returns the list of litterature
+     * returns the list of literature
      * 
-     * @return the list of litterature 
+     * @return the list of literature 
      */
-    public HashSet<Litterature> getLitteratureList()
+    public HashSet<Literature> getLiteratureList()
     {
-        return register.getLitteratureList();
+        return register.getLiteratureList();
     }
 
     /**
@@ -54,22 +55,26 @@ public class KioskLogic
     }
 
     /**
-     * Adds litterature of the selected kind to the store.
+     * Adds literature of the selected kind to the store.
      *
      * @param menuSelection choice made by user
-     * @param title title of the litterature to add
-     * @param publ publisher of thelitterature to add
+     * @param title title of the literature to add
+     * @param publ publisher of the literature to add
      */
-    public void addLitteratureToRegister(String menuSelection, String title, Publisher publ)
+    public void addLiteratureToRegister(String menuSelection, String title, Publisher publ, int issuesInYear, String genre)
     {
         switch (menuSelection)
         {
             case "newspaper":
-                register.addLitterature(new Newspaper(title, publ));
+                register.addLiterature(new Newspaper(title, publ, issuesInYear, genre));
                 break;
 
             case "magazine":
-                register.addLitterature(new Magazine(title, publ));
+                register.addLiterature(new Magazine(title, publ, issuesInYear, genre));
+                break;
+      
+            case "journal":
+                register.addLiterature(new Journal(title, publ, issuesInYear, genre));
                 break;
 
             default:
@@ -78,23 +83,19 @@ public class KioskLogic
     }
     
     /**
-     * Adds litterature of the selected kind to the store.
+     * Adds literature of the selected kind to the store.
      *
      * @param menuSelection choice made by user
-     * @param title title of the litterature to add
-     * @param author author of the litterature to add
-     * @param publ publisher of thelitterature to add
+     * @param title title of the literature to add
+     * @param author author of the literature to add
+     * @param publ publisher of the literature to add
      */
-    public void addLitteratureWithAuthorToRegister(String menuSelection, String title, String author, Publisher publ)
+    public void addLiteratureWithAuthorToRegister(String menuSelection, String title, String author, Publisher publ, int edition)
     {
         switch (menuSelection)
         {
             case "book":
-                register.addLitterature(new Book(title, author, publ));
-                break;
-
-            case "journal":
-                register.addLitterature(new Journal(title, author, publ));
+                register.addLiterature(new Book(title, author, publ, edition));
                 break;
                 
             default:
@@ -103,65 +104,65 @@ public class KioskLogic
     }
 
     /**
-     * Finds all the litterature that has a connection with the given search
+     * Finds all the literature that has a connection with the given search
      * condition and returns the info about them.
      *
      * @param searchCondition the string you would like to search by
      * @param searchType The type of search you would like to make (by
      * publisher, author or title)
      *
-     * @return the info of all the litterature found as a string
+     * @return the info of all the literature found as a string
      */
-    public String findLitterature(String searchCondition, String searchType)
+    public String findLiterature(String searchCondition, String searchType)
     {
         String returnString = "";
-        Iterator it = register.getLitteratureListIterator();
+        Iterator it = register.getLiteratureListIterator();
         while (it.hasNext())
         {
-            Litterature litterature = (Litterature) it.next();
+            Literature literature = (Literature) it.next();
             String value;
             switch (searchType)
             {
                 case "publisher":
-                    value = litterature.getPublisher().getName();
+                    value = literature.getPublisher().getName();
                     break;
                 case "title":
-                    value = litterature.getTitle();
+                    value = literature.getTitle();
                     break;
                 case "author":
-                    value = litterature.getAuthor();
+                    value = literature.getAuthor();
                     break;
                 default:
                     throw new IllegalArgumentException("Unknown type " + searchType);
             }
             if (value.equals(searchCondition))
             {
-                returnString = returnString + litterature.getInfo() + "\n\n";
+                returnString = returnString + literature.getInfo() + "\n\n";
             }
         }
         return returnString;
     }
 
     /**
-     * Returns the information about all the litterature in the store as a
+     * Returns the information about all the literature in the store as a
      * string.
      *
-     * @return The information about all the litterature in the store as a
+     * @return The information about all the literature in the store as a
      * string
      */
-    public String getAllLitterature()
+    public String getAllLiterature()
     {
         String returnString = "";
-        Iterator it = register.getLitteratureListIterator();
+        Iterator it = register.getLiteratureListIterator();
         while (it.hasNext())
         {
-            Litterature litterature = (Litterature) it.next();
+            Literature literature = (Literature) it.next();
 
-            returnString = returnString + litterature.getInfo() + "\n\n";
+            returnString = returnString + literature.getInfo() + "\n\n";
         }
         if (returnString.equals(""))
         {
-            returnString = "There is no litterature.";
+            returnString = "There is no literature.";
         }
         return returnString;
     }

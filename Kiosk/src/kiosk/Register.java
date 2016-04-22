@@ -4,15 +4,16 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 /**
- * This class creates a register that keeps track of the litterature it is
+ * This class creates a register that keeps track of the literature it is
  * given.
  *
- * @author Hallvard
+ * @author Hallvard & Alexander Eilert Berg
+ * @version 0.2
  */
 public class Register
 {
 
-    private HashSet<Litterature> litteratureList;
+    private HashSet<Literature> literatureList;
     private HashMap<String, Publisher> publishers;
 
     /**
@@ -20,27 +21,27 @@ public class Register
      */
     public Register()
     {
-        litteratureList = new HashSet<>();
+        literatureList = new HashSet<>();
         publishers = new HashMap<>();
     }
     
     /**
-     * returns the list of litterature
-     * @return the list of litterature
+     * returns the list of literature
+     * @return the list of literature
      */
-    public HashSet<Litterature> getLitteratureList()
+    public HashSet<Literature> getLiteratureList()
     {
-        return litteratureList;
+        return literatureList;
     }
 
     /**
-     * Adds a litterature to the register.
+     * Adds a literature to the register.
      *
-     * @param litterature the litterature to add in the register.
+     * @param literature the literature to add in the register.
      */
-    public void addLitterature(Litterature litterature)
+    public void addLiterature(Literature literature)
     {
-        litteratureList.add(litterature);
+        literatureList.add(literature);
     }
 
     /**
@@ -55,13 +56,13 @@ public class Register
 
 
     /**
-     * Returns the iterator of the litteratureList
+     * Returns the iterator of the literatureList
      * 
-     * @return The iterator of the litteratureList
+     * @return The iterator of the literatureList
      */
-    public Iterator getLitteratureListIterator()
+    public Iterator getLiteratureListIterator()
     {
-        Iterator<Litterature> it= litteratureList.iterator();
+        Iterator<Literature> it= literatureList.iterator();
         return it;
     }
     

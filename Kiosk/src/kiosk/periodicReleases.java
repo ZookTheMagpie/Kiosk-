@@ -5,7 +5,7 @@
  * @author Alexander Eilert Berg
  * @version 0.2
  */
-public abstract class periodicReleases extends Litterature
+public abstract class periodicReleases extends Literature
 {
     private int issuesInYear;
     private String genre;

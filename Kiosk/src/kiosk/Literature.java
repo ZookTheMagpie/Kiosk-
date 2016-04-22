@@ -6,13 +6,18 @@
  * @author HaIIvard & Alexander Eilert Berg
  * @version 0.5
  */
-public abstract class Litterature
+public abstract class Literature
 {
 
     private String title;
     private Publisher publisher;
     
-    public Litterature(String title, Publisher publisher)
+    /**
+     * Holds the information for literature.
+     * @param title     // The title of the literature.    
+     * @param publisher // The publisher of the publication.
+     */
+    public Literature(String title, Publisher publisher)
     {
         this.publisher = publisher;
         this.title = title;
