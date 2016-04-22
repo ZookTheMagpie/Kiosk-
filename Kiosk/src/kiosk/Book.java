@@ -2,29 +2,25 @@
  * This class contains the information that defines a book.
  *
  * @author HaIIvard & Alexander Eilert Berg
- * @version 0.3
+ * @version 0.4
  */
-public class Book extends Litterature
+public class Book extends SingleReleases
 {
-
-    private String author;
-    
     /**
-     *
-     * @param title the title of the book.
-     * @param author the author of the book
-     * @param publisher the publisher of the book
+     * Creates an object that acts as a book.
+     * 
+     * @param title     // The title of the book.
+     * @param author    // The author of the book
+     * @param publisher // The publisher of the book
+     * @param edition   // The edition of the book
      */
-    public Book(String title, String author, Publisher publisher)
+    public Book(String title, String author, Publisher publisher, int edition)
     {
-        super(title, publisher);
-        this.author = author;
+        super(title, author, publisher, edition);
     }
 
-    
     /**
-     * returns the type book, to be used in sentences like, "The book title by author".
-     * 
+     * Returns the type book, to be used in sentences like, "The book title by author".
      * @return The string "The book".
      */
     @Override
@@ -32,16 +28,4 @@ public class Book extends Litterature
     {
         return "The book";
     }
-    
-    /**
-     * Returns the author of the book.
-     *
-     * @return The author of the book.
-     */
-    @Override
-    public String getAuthor()
-    {
-        return "\n written by " + author;
-    }
-
 }

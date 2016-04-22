@@ -1,15 +1,15 @@
 
 /**
  * This class contains the common information about all the different
- * types of litterature.
+ * types of literature.
  *
- * @author HaIIvard
+ * @author HaIIvard & Alexander Eilert Berg
+ * @version 0.5
  */
 public abstract class Litterature
 {
 
     private String title;
-    
     private Publisher publisher;
     
     public Litterature(String title, Publisher publisher)
@@ -19,9 +19,8 @@ public abstract class Litterature
     }
 
     /**
-     * Returns the title of the book.
-     *
-     * @return the title of the book.
+     * Returns the title of the publication.
+     * @return the title of the publication.
      */
     public String getTitle()
     {
@@ -29,38 +28,36 @@ public abstract class Litterature
     }
 
     /**
-     * Returns the publisher of the book.
-     *
-     * @return The publisher of the book.
+     * Returns the publisher of the publication.
+     * @return The publisher of the publication.
      */
     public Publisher getPublisher()
     {
         return publisher;
     }
-    
+
     /**
-     * Returns the author of the litterature as a string. To be used in sentences.
-     * 
-     * @return The author of the litterature.
-     */
-    public abstract String getAuthor();
-    
-    /**
-     * Returns the type of the litterature as a string. To be used in sentences.
-     * 
-     * @return The type of the litterature.
+     * Returns the type of the literature as a string. To be used in sentences.
+     * @return The type of the literature.
      */
     public abstract String getType();
     
     /**
-     * Builds the information about the litterature into a string that it returns.
-     * 
-     * @return The information about the litterature.
+     * Returns the details for the publications.
+     * @return Returns the details for the publications.
+     */
+    public abstract String getDetails();
+    
+    /**
+     * Builds the information about the literature into a string that it returns.
+     * @return The information about the literature.
      */
     public String getInfo()
     {
-        String returnString =getType() + " " + title + getAuthor() +
-                "\n published by " + publisher.getName();
+        String returnString = getType() + 
+                "\n published by " + publisher.getName() + 
+                getDetails();
+        
         return returnString;
     }
     

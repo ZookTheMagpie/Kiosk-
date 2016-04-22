@@ -3,35 +3,30 @@
  * This class contains the information that defines a magazine. 
  * 
  * @author Alexander Eilert Berg
- * @version 0.1
+ * @version 0.3
  */
-public class Magazine extends Litterature
+public class Magazine extends periodicReleases
 {
-
-    public Magazine(String title,Publisher publisher)
+     /**
+     * Creates an object that acts as an magazine.
+     * 
+     * @param title         // The title/name of the paper
+     * @param publisher     // The publisher of the paper
+     * @param issuesInYear  // The number of releases in one year 
+     * @param genre         // The genre of the newspaper, defining its area of focus(sports travel, photography, family leaves, etc.)
+     */
+    public Magazine(String title,Publisher publisher, int issuesInYear, String genre)
     {
-        super(title, publisher);
+        super(title, publisher, issuesInYear, genre);
     }
 
-   /**
-     * returns the type Magazine, to be used in sentences like, "The Magazine title by author".
-     * 
+    /**
+     * Returns the type Magazine, to be used in sentences like, "The Magazine.....".
      * @return The string "The magazine".
      */
     @Override
     public String getType()
     {
         return "The magazine";
-    }
-        
-    /**
-     *  Magazine has currently no author and therfore returns an empty string.
-     * @return Returns an empty string.
-     */
-    @Override
-    public String getAuthor()
-    {
-        String string = "";
-        return string;
     }
 }
