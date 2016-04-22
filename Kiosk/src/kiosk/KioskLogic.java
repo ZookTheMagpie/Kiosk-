@@ -47,23 +47,39 @@ public class KioskLogic
      *
      * @param menuSelection choice made by user
      * @param title title of the litterature to add
-     * @param author author of the litterature to add
      * @param publ publisher of thelitterature to add
      */
-    public void addLitteratureToRegister(int menuSelection, String title, String author, Publisher publ)
+    public void addLitteratureToRegister(int menuSelection, String title, Publisher publ)
     {
         switch (menuSelection)
         {
-            case 1:
-                register.addLitterature(new Book(title, author, publ));
-                break;
-
             case 2:
                 register.addLitterature(new Newspaper(title, publ));
                 break;
 
             case 3:
                 register.addLitterature(new Magazine(title, publ));
+                break;
+
+            default:
+                throw new IllegalArgumentException("Unknown selection: " + menuSelection);
+        }
+    }
+    
+    /**
+     * Adds litterature of the selected kind to the store.
+     *
+     * @param menuSelection choice made by user
+     * @param title title of the litterature to add
+     * @param author author of the litterature to add
+     * @param publ publisher of thelitterature to add
+     */
+    public void addLitteratureWithAuthorToRegister(int menuSelection, String title, String author, Publisher publ)
+    {
+        switch (menuSelection)
+        {
+            case 1:
+                register.addLitterature(new Book(title, author, publ));
                 break;
 
             case 4:

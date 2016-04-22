@@ -193,14 +193,17 @@ public class KioskUI
             } else
             {
                 String title = this.getTitle();
-                String author = this.getAuthor();
                 Publisher publ = this.getPublisher();
-                if (publ == null)
+                if (menuSelection == 1 || menuSelection == 4)
+                {
+                    String author = this.getAuthor();
+                    kioskL.addLitteratureWithAuthorToRegister(menuSelection, author, title, publ);
+                } else if (publ == null)
                 {
                     System.out.println(title + "was not added to the store.");
                 } else
                 {
-                    kioskL.addLitteratureToRegister(menuSelection, title, author, publ);
+                    kioskL.addLitteratureToRegister(menuSelection, title, publ);
                     System.out.println(title + " was added to the store.");
                 }
             }
