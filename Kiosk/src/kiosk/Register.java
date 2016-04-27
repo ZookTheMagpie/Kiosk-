@@ -1,20 +1,21 @@
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.InputMismatchException;
 import java.util.Iterator;
 
 /**
- * This class creates a register that keeps track of the literature it is
- * given.
+ * This class creates a register that keeps track of the literature it is given.
  *
  * @author Hallvard & Alexander Eilert Berg
  * @version 0.2
  */
-public class Register
+public class Register implements Observable
 {
 
     private HashSet<Literature> literatureList;
     private HashMap<String, Publisher> publishers;
+    private HashSet<Observer> observers;
 
     /**
      * Creates the register.
@@ -23,10 +24,12 @@ public class Register
     {
         literatureList = new HashSet<>();
         publishers = new HashMap<>();
+        observers = new HashSet<>();
     }
-    
+
     /**
      * returns the list of literature
+     *
      * @return the list of literature
      */
     public HashSet<Literature> getLiteratureList()
@@ -42,6 +45,7 @@ public class Register
     public void addLiterature(Literature literature)
     {
         literatureList.add(literature);
+        updateObservers();
     }
 
     /**
@@ -52,27 +56,28 @@ public class Register
     public void addPublisher(String publisherName)
     {
         publishers.put(publisherName, new Publisher(publisherName));
-    }
+        updateObservers();
 
+    }
 
     /**
      * Returns the iterator of the literatureList
-     * 
+     *
      * @return The iterator of the literatureList
      */
     public Iterator getLiteratureListIterator()
     {
-        Iterator<Literature> it= literatureList.iterator();
+        Iterator<Literature> it = literatureList.iterator();
         return it;
     }
-    
+
     /**
-     * Returns the publisher with the given name, null if there is no one with that
-     * name.
+     * Returns the publisher with the given name, null if there is no one with
+     * that name.
      *
      * @param publisherName Name of the publisher.
-     * @return The publisher with the given name, null if there is no one with that
-     * name
+     * @return The publisher with the given name, null if there is no one with
+     * that name
      */
     public Publisher getPublisher(String publisherName)
     {
@@ -82,5 +87,65 @@ public class Register
             returnPublisher = publishers.get(publisherName);
         }
         return returnPublisher;
+    }
+
+    /**
+     * Adds an observer to the list of observers.
+     *
+     * @param name of the observer
+     * @throws IllegalArgumentException if the observer to add is null.
+     */
+    @Override
+    public void addObserver(Observer obs)
+    {
+        if (obs != null)
+        {
+            if (!observers.contains(obs))
+            {
+                observers.add(obs);
+            } else
+            {
+                throw new InputMismatchException("Observer is already in the list.");
+            }
+        } else
+        {
+
+            throw new IllegalArgumentException("Input is not Observer object");
+        }
+    }
+
+    /**
+     * Removes an observer to the list of observers.
+     *
+     * @param name of the observer
+     * @throws InputMismatchException if the observer to be removed is not in
+     * the list of observers.
+     * @throws IllegalArgumentException if observer to be removed is null
+     */
+    @Override
+    public void removeObserver(Observer obs)
+    {
+        if (obs != null)
+        {
+            if (observers.contains(obs))
+            {
+                observers.remove(obs);
+            }
+            throw new InputMismatchException("Observer is not in the list, remove action ended.");
+        }
+
+        throw new IllegalArgumentException("Input is not Observer object");
+    }
+
+    /**
+     * updates the observers list.
+     */
+    @Override
+    public void updateObservers()
+    {
+        for (Observer obs : observers)
+        {
+            obs.update();
+        }
     }
 }

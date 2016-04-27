@@ -166,5 +166,14 @@ public class KioskLogic
         }
         return returnString;
     }
+    
+    /**
+     * adds the observer from the input to the registers list of observers.
+     * @param obs observer to add to the list.
+     */
+    public void addToRegisterObserverList(Observer obs)
+    {
+        register.addObserver(obs);
+    }
 
 }

@@ -1,4 +1,5 @@
 
+import java.util.InputMismatchException;
 import java.util.Optional;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -31,8 +32,9 @@ import javafx.stage.Stage;
  *
  * @author HaIIvard
  */
-public class KioskGUI extends Application implements EventHandler<ActionEvent>
+public class KioskGUI extends Application implements EventHandler<ActionEvent>, Observer
 {
+
     private TextField filterField;
 
     private KioskLogic kioskL;
@@ -47,14 +49,26 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>
     }
 
     @Override
-        public void init()
+    public void init()
     {
         kioskL = new KioskLogic();
+        try
+        {
+            kioskL.addToRegisterObserverList(this);
+        } catch (InputMismatchException e)
+        {
+            System.out.println("The observer is already in the list");
+        } catch (IllegalArgumentException e)
+        {
+            System.out.println("You did not enter an Observer.");
+        }
+
     }
 
     @Override
-        public void start(Stage primaryStage)
+    public void start(Stage primaryStage)
     {
+
         BorderPane root = new BorderPane(); // Create the root node. The Menu will be placed at the top
         VBox topContainer = new VBox();  //Creates a container to hold all Menu Objects.
         MenuBar menuBar = createMenu();
@@ -76,21 +90,20 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>
     }
 
     @Override
-        public void stop()
+    public void stop()
     {
         System.exit(0);
     }
 
-
     /**
      * Creates the centre content for the application
+     *
      * @return the centre content
      */
     private Node createCentreContent()
     {
         VBox vbox = new VBox();
         TableView tableView;
-        
 
         // Define the columns
         // The Title-column
@@ -116,17 +129,18 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>
         exitButton.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
-        public void handle(ActionEvent event)
+            public void handle(ActionEvent event)
             {
                 Alert alert = new Alert(AlertType.CONFIRMATION);
                 alert.setHeaderText("Exit application?");
                 alert.setContentText("Are you sure you want to exit?");
                 Optional<ButtonType> result = alert.showAndWait();
-                if(result.get() == ButtonType.OK)
-                {                
-                Platform.exit();
+                if (result.get() == ButtonType.OK)
+                {
+                    Platform.exit();
+                } else
+                {
                 }
-                else{}
             }
         });
         exitButton.setAlignment(Pos.CENTER);
@@ -139,6 +153,7 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>
 
     /**
      * Creates the menu for the application
+     *
      * @return The menu bar.
      */
     private MenuBar createMenu()
@@ -155,7 +170,6 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>
             public void handle(ActionEvent event)
             {
                 kioskL.addLiteratureWithAuthorToRegister("book", "Lord of the Rings", "J.R.R. Tolkien", getPublisher("Gyldendahl"), 1);
-                updateObservableList();
             }
         });
         newspaper.setOnAction(new EventHandler<ActionEvent>()
@@ -163,7 +177,6 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>
             public void handle(ActionEvent event)
             {
                 kioskL.addLiteratureToRegister("newspaper", "VG", getPublisher("Per"), 1, "News");
-                updateObservableList();
             }
         });
         magazine.setOnAction(new EventHandler<ActionEvent>()
@@ -171,7 +184,6 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>
             public void handle(ActionEvent event)
             {
                 kioskL.addLiteratureToRegister("magazine", "Se og Hør", getPublisher("Per"), 1, "Sladder");
-                updateObservableList();
             }
         });
         journal.setOnAction(new EventHandler<ActionEvent>()
@@ -179,7 +191,6 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>
             public void handle(ActionEvent event)
             {
                 kioskL.addLiteratureToRegister("journal", "MatLab", getPublisher("Ntnu"), 1, "Vitskap");
-                updateObservableList();
             }
         });
         Menu addSeries = new Menu("Add Series");
@@ -223,13 +234,14 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>
      * Literature register. Call this method whenever changes are made to the
      * underlying LiteratureRegister.
      */
-    private void updateObservableList()
+    @Override
+    public void update()
     {
         this.literatures.setAll(kioskL.getLiteratureList());
     }
 
     @Override
-        public void handle(ActionEvent event)
+    public void handle(ActionEvent event)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
