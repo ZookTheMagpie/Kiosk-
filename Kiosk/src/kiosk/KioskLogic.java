@@ -105,42 +105,34 @@ public class KioskLogic
 
     /**
      * Finds all the literature that has a connection with the given search
-     * condition and returns the info about them.
+     * condition and returns the info about them. Searches by upper case.
      *
      * @param searchCondition the string you would like to search by
-     * @param searchType The type of search you would like to make (by
-     * publisher, author or title)
      *
-     * @return the info of all the literature found as a string
+     * @return the literature found
      */
-    public String findLiterature(String searchCondition, String searchType)
+    public HashSet<Literature> findLiterature(String searchCondition)
     {
-        String returnString = "";
+        HashSet<Literature> filteredList = new HashSet<>();
         Iterator it = register.getLiteratureListIterator();
         while (it.hasNext())
         {
             Literature literature = (Literature) it.next();
-            String value;
-            switch (searchType)
+ 
+            if (literature.getTitle().toUpperCase().contains(searchCondition))
             {
-                case "publisher":
-                    value = literature.getPublisher().getName();
-                    break;
-                case "title":
-                    value = literature.getTitle();
-                    break;
-                case "author":
-                    value = literature.getAuthor();
-                    break;
-                default:
-                    throw new IllegalArgumentException("Unknown type " + searchType);
+                filteredList.add(literature);
             }
-            if (value.equals(searchCondition))
+            if (literature.getAuthor().toUpperCase().contains(searchCondition))
             {
-                returnString = returnString + literature.getInfo() + "\n\n";
+                filteredList.add(literature);
+            }
+            if (literature.getPublisher().getName().toUpperCase().contains(searchCondition))
+            {
+                filteredList.add(literature);
             }
         }
-        return returnString;
+        return filteredList;
     }
 
     /**

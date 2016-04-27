@@ -3,6 +3,8 @@ import java.util.InputMismatchException;
 import java.util.Optional;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -96,6 +98,29 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
     }
 
     /**
+     * Handles searches done by the user
+     *
+     * @param oldVal
+     * @param newVal
+     */
+    public void handleSearchByKey(String oldVal, String newVal)
+    {
+
+        if (newVal.length() == 0)
+        {
+            update();
+        }
+        if (oldVal.length() != newVal.length())
+        {
+
+            // Change to upper case so that case is not an issue
+            newVal = newVal.toUpperCase();
+
+            literatures.setAll(kioskL.findLiterature(newVal));
+        }
+    }
+
+    /**
      * Creates the centre content for the application
      *
      * @return the centre content
@@ -103,6 +128,26 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
     private Node createCentreContent()
     {
         VBox vbox = new VBox();
+        TextField textField = new TextField();
+
+        HBox hbox1 = new HBox();
+        hbox1.setAlignment(Pos.CENTER);
+        hbox1.setPadding(new Insets(15, 15, 15, 15));
+        textField.setMaxWidth(200.0);
+        textField.setPromptText("Search");
+        textField.setAlignment(Pos.CENTER);
+        textField.textProperty().addListener(
+                new ChangeListener()
+        {
+
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue)
+            {
+                handleSearchByKey((String) oldValue, (String) newValue);
+            }
+        });
+        hbox1.getChildren().add(textField);
+
         TableView tableView;
 
         // Define the columns
@@ -120,7 +165,7 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
         tableView.setItems(getLitteratureList());
         tableView.getColumns().addAll(titleColumn, publisherColumn);
 
-        vbox.getChildren().add(tableView);
+        vbox.getChildren().addAll(hbox1, tableView);
 
         HBox hbox = new HBox();
         hbox.setAlignment(Pos.CENTER);
