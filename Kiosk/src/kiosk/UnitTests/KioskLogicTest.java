@@ -51,7 +51,9 @@ public class KioskLogicTest
         kioskLog1.addLiteratureToRegister("newspaper", "test", publishe1, 12, "news");
         assertNotSame("There is no literature.", kioskLog1.getAllLiterature());
     }
-
+    /**
+     * Tests what will be returned if no literature has been added
+     */
     @Test
     public void testNoLitteratureAdded()
     {
