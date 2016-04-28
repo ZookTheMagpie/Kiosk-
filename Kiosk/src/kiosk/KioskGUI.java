@@ -22,7 +22,9 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
@@ -188,8 +190,35 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
                 }
             }
         });
-        exitButton.setAlignment(Pos.CENTER);
-        hbox.getChildren().addAll(exitButton);
+        exitButton.setAlignment(Pos.CENTER_RIGHT);
+
+        Button removeButton = new Button("Remove");
+        removeButton.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                TablePosition pos = (TablePosition) tableView.getSelectionModel().getSelectedCells().get(0);
+
+// this gives the value in the selected cell:
+                String data = (String) pos.getTableColumn().getCellObservableValue(tableView.getItems().get(pos.getRow())).getValue();
+                String litName = data.toUpperCase();
+
+                Alert alert = new Alert(AlertType.CONFIRMATION);
+                alert.setHeaderText("Remove literature??");
+                alert.setContentText("Are you sure you want to remove " + data + "?");
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK)
+                {
+                    kioskL.removeLit(litName);
+                } else
+                {
+                }
+            }
+        });
+        removeButton.setAlignment(Pos.CENTER_LEFT);
+
+        hbox.getChildren().addAll(removeButton, exitButton);
 
         vbox.getChildren().add(hbox);
 

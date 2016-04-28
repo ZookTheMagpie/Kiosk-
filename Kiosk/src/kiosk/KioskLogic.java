@@ -1,5 +1,6 @@
 
 import java.util.HashSet;
+import java.util.InputMismatchException;
 import java.util.Iterator;
 
 /**
@@ -21,11 +22,11 @@ public class KioskLogic
         register = new Register();
         parser = new Parser();
     }
-    
+
     /**
      * returns the list of literature
-     * 
-     * @return the list of literature 
+     *
+     * @return the list of literature
      */
     public HashSet<Literature> getLiteratureList()
     {
@@ -55,6 +56,29 @@ public class KioskLogic
     }
 
     /**
+     * removes literature from the list of literature
+     *
+     * @param The name of theliterature to be removed
+     */
+    public void removeLit(String litName)
+    {
+        Literature lit = this.findOneLiterature(litName);
+        if (lit != null)
+        {
+            try
+            {
+                register.removeLiterature(lit);
+            } catch (InputMismatchException e)
+            {
+                System.out.println(litName + " is not literature");
+            } catch (IllegalArgumentException e)
+            {
+                System.out.println(litName + " is not in the list");
+            }
+        }
+    }
+
+    /**
      * Adds literature of the selected kind to the store.
      *
      * @param menuSelection choice made by user
@@ -72,7 +96,7 @@ public class KioskLogic
             case "magazine":
                 register.addLiterature(new Magazine(title, publ, issuesInYear, genre));
                 break;
-      
+
             case "journal":
                 register.addLiterature(new Journal(title, publ, issuesInYear, genre));
                 break;
@@ -81,7 +105,7 @@ public class KioskLogic
                 throw new IllegalArgumentException("Unknown selection: " + menuSelection);
         }
     }
-    
+
     /**
      * Adds literature of the selected kind to the store.
      *
@@ -97,7 +121,7 @@ public class KioskLogic
             case "book":
                 register.addLiterature(new Book(title, author, publ, edition));
                 break;
-                
+
             default:
                 throw new IllegalArgumentException("Unknown selection: " + menuSelection);
         }
@@ -118,7 +142,7 @@ public class KioskLogic
         while (it.hasNext())
         {
             Literature literature = (Literature) it.next();
- 
+
             if (literature.getTitle().toUpperCase().contains(searchCondition))
             {
                 filteredList.add(literature);
@@ -139,8 +163,7 @@ public class KioskLogic
      * Returns the information about all the literature in the store as a
      * string.
      *
-     * @return The information about all the literature in the store as a
-     * string
+     * @return The information about all the literature in the store as a string
      */
     public String getAllLiterature()
     {
@@ -158,14 +181,39 @@ public class KioskLogic
         }
         return returnString;
     }
-    
+
     /**
      * adds the observer from the input to the registers list of observers.
+     *
      * @param obs observer to add to the list.
      */
     public void addToRegisterObserverList(Observer obs)
     {
         register.addObserver(obs);
+    }
+
+    /**
+     * Finds a literature with the given name
+     *
+     * @param litName
+     * @return Literature
+     */
+    private Literature findOneLiterature(String litName)
+    {
+        Literature lit = null;
+        Boolean finished = false;
+        Iterator it = register.getLiteratureListIterator();
+        while (it.hasNext() && !finished)
+        {
+            Literature literature = (Literature) it.next();
+
+            if (literature.getTitle().toUpperCase().equals(litName))
+            {
+                finished = true;
+                lit = literature;
+            }
+        }
+        return lit;
     }
 
 }

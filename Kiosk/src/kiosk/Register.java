@@ -49,6 +49,32 @@ public class Register implements Observable
     }
 
     /**
+     * Removes literature from the list of literature
+     *
+     * @param literature literature to be removed
+     * @throws InputMismatchException if the literature to be removed is not in
+     * the list of literature.
+     * @throws IllegalArgumentException if the literature to be removed is null
+     */
+    public void removeLiterature(Literature literature)
+    {
+        if (literature != null)
+        {
+            if (literatureList.contains(literature))
+            {
+                literatureList.remove(literature);
+                updateObservers();
+            } else
+            {
+                throw new IllegalArgumentException("Literature is not literature, remove action ended.");
+            }
+        } else
+        {
+            throw new InputMismatchException("input is not in the list, remove action ended");
+        }
+    }
+
+    /**
      * Creates a new publisher.
      *
      * @param publisherName The name of the new publisher.
