@@ -36,11 +36,13 @@ public class KioskLogic
     /**
      * Makes the register add a publisher with a given name to a collection.
      *
+     * @return publisher
      * @param publisherName name of the publisher
      */
-    public void addPublisherToRegister(String publisherName)
+    public Publisher addPublisherToRegister(String publisherName)
     {
         register.addPublisher(publisherName);
+        return register.getPublisher(publisherName);
     }
 
     /**

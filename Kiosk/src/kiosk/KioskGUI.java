@@ -18,6 +18,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -28,13 +30,17 @@ import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 /**
- *
- * @author HaIIvard
+ *The GUI for the kiosk application.
+ * 
+ * @author HaIIvard & Alexander Eilert Berg
+ * @version 0.5
  */
 public class KioskGUI extends Application implements EventHandler<ActionEvent>, Observer
 {
@@ -241,32 +247,80 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
         addMenu.getItems().addAll(book, newspaper, magazine, journal);
         book.setOnAction(new EventHandler<ActionEvent>()
         {
+            @Override
             public void handle(ActionEvent event)
             {
-                kioskL.addLiteratureWithAuthorToRegister("book", "Lord of the Rings", "J.R.R. Tolkien", getPublisher("Gyldendahl"), 1);
+                addBookDialog bDialog = new addBookDialog();
+                Optional<Book> result = bDialog.showAndWait();
+                if (bDialog.isButtonOK())
+                {
+                    kioskL.addLiteratureWithAuthorToRegister("book", bDialog.getBookTitle(), bDialog.getBookAuthor(), kioskL.addPublisherToRegister(bDialog.getBookPublisher()), bDialog.getBookEdition());
+
+                } else
+                {
+                    System.out.println("Error");
+                }
+
             }
         });
+
         newspaper.setOnAction(new EventHandler<ActionEvent>()
         {
+            @Override
             public void handle(ActionEvent event)
             {
-                kioskL.addLiteratureToRegister("newspaper", "VG", getPublisher("Per"), 1, "News");
+                addNewspaperDialog nDialog = new addNewspaperDialog();
+                Optional<Newspaper> result = nDialog.showAndWait();
+                if (nDialog.isButtonOK())
+                {
+                    kioskL.addLiteratureWithAuthorToRegister("newspaper", nDialog.getNewspaperTitle(), nDialog.getNewspaperGenre(), kioskL.addPublisherToRegister(nDialog.getNewspaperPublisher()),nDialog.getNewspaperIssuesInYear());
+
+                } else
+                {
+                    System.out.println("Error");
+                }
+
             }
         });
+        
         magazine.setOnAction(new EventHandler<ActionEvent>()
         {
+            @Override
             public void handle(ActionEvent event)
             {
-                kioskL.addLiteratureToRegister("magazine", "Se og Hør", getPublisher("Per"), 1, "Sladder");
+                addMagazineDialog mDialog = new addMagazineDialog();
+                Optional<Magazine> result = mDialog.showAndWait();
+                if (mDialog.isButtonOK())
+                {
+                    kioskL.addLiteratureWithAuthorToRegister("magazine", mDialog.getMagazineTitle(), mDialog.getMagazineGenre(), kioskL.addPublisherToRegister(mDialog.getMagazinePublisher()), mDialog.getMagazineIssuesInYear());
+
+                } else
+                {
+                    System.out.println("Error");
+                }
+
             }
         });
+        
         journal.setOnAction(new EventHandler<ActionEvent>()
         {
+            @Override
             public void handle(ActionEvent event)
             {
-                kioskL.addLiteratureToRegister("journal", "MatLab", getPublisher("Ntnu"), 1, "Vitskap");
+                addJournalDialog jDialog = new addJournalDialog();
+                Optional<Journal> result = jDialog.showAndWait();
+                if (jDialog.isButtonOK())
+                {
+                    kioskL.addLiteratureWithAuthorToRegister("journal", jDialog.getJournalTitle(), jDialog.getJournalGenre(), kioskL.addPublisherToRegister(jDialog.getJournalPublisher()), jDialog.getJournalIssuesInYear());
+
+                } else
+                {
+                    System.out.println("Error");
+                }
+
             }
         });
+        
         Menu addSeries = new Menu("Add Series");
 
         menuBar.getMenus().addAll(addMenu, addSeries);
@@ -274,10 +328,10 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
     }
 
     /**
-     * Returns the publisher for the new litterature, if the publisher doesn't
+     * Returns the publisher for the new literature, if the publisher doesn't
      * exist, you have the choice of creating one.
      *
-     * @return Publisher to use for litterature creation.
+     * @return Publisher to use for literature creation.
      */
     private Publisher getPublisher(String publisherName)
     {
