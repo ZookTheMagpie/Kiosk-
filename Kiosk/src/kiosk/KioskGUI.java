@@ -25,6 +25,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
@@ -175,6 +176,22 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
         tableView = new TableView();
         tableView.setItems(getLitteratureList());
         tableView.getColumns().addAll(titleColumn, publisherColumn);
+        
+        tableView.setRowFactory(Literature ->
+        {
+            TableRow<Literature> row = new TableRow<>();
+            row.setOnMouseClicked(event ->
+            {
+                if (event.getClickCount() == 2 && (! row.isEmpty()))
+                {
+                    String data = row.getItem().getDetails();
+                    Alert 
+                }
+            }
+         
+            );
+        return row;
+        });
 
         vbox.getChildren().addAll(hbox1, tableView);
 
