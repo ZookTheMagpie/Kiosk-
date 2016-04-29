@@ -34,8 +34,8 @@ public class KioskLogic
     }
 
     /**
-     * Returns a publisher with the given name from the register, if there is no publisher
-     * with that name, creates one and returns it.
+     * Returns a publisher with the given name from the register, if there is no
+     * publisher with that name, creates one and returns it.
      *
      * @param publisherName name of the publisher
      * @return Publisher with the given name.
@@ -186,7 +186,13 @@ public class KioskLogic
      */
     public void addToRegisterObserverList(Observer obs)
     {
-        register.addObserver(obs);
+        if (obs != null)
+        {
+            register.addObserver(obs);
+        } else
+        {
+            throw new InputMismatchException("Input must be of the type observer.");
+        }
     }
 
     /**
@@ -197,20 +203,26 @@ public class KioskLogic
      */
     private Literature findOneLiterature(String litName)
     {
-        Literature lit = null;
-        Boolean finished = false;
-        Iterator it = register.getLiteratureListIterator();
-        while (it.hasNext() && !finished)
+        if (litName != null)
         {
-            Literature literature = (Literature) it.next();
-
-            if (literature.getTitle().toUpperCase().equals(litName))
+            Literature lit = null;
+            Boolean finished = false;
+            Iterator it = register.getLiteratureListIterator();
+            while (it.hasNext() && !finished)
             {
-                finished = true;
-                lit = literature;
+                Literature literature = (Literature) it.next();
+
+                if (literature.getTitle().toUpperCase().equals(litName))
+                {
+                    finished = true;
+                    lit = literature;
+                }
             }
+            return lit;
+        } else
+        {
+            throw new InputMismatchException("Input must be of the String type.");
         }
-        return lit;
     }
 
 }
