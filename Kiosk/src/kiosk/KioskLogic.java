@@ -88,23 +88,30 @@ public class KioskLogic
     {
         if (title.length() > 0 && genre.length() > 0 && publ != null && menuSelection != null && title != null && genre != null)
         {
-            switch (menuSelection)
+            if (this.findLiterature(title).isEmpty())
             {
-                case "newspaper":
-                    register.addLiterature(new Newspaper(title, publ, issuesInYear, genre));
-                    break;
+                switch (menuSelection)
+                {
+                    case "newspaper":
+                        register.addLiterature(new Newspaper(title, publ, issuesInYear, genre));
+                        break;
 
-                case "magazine":
-                    register.addLiterature(new Magazine(title, publ, issuesInYear, genre));
-                    break;
+                    case "magazine":
+                        register.addLiterature(new Magazine(title, publ, issuesInYear, genre));
+                        break;
 
-                case "journal":
-                    register.addLiterature(new Journal(title, publ, issuesInYear, genre));
-                    break;
+                    case "journal":
+                        register.addLiterature(new Journal(title, publ, issuesInYear, genre));
+                        break;
 
-                default:
-                    throw new IllegalArgumentException("Unknown selection: " + menuSelection);
+                    default:
+                        throw new IllegalArgumentException("Unknown selection: " + menuSelection);
+                }
+            } else
+            {
+                throw new IllegalArgumentException(title + " is already in the list of literature");              
             }
+
         } else
         {
             throw new InputMismatchException("Invalid input");
@@ -136,14 +143,32 @@ public class KioskLogic
     {
         if (title.length() > 0 && author.length() > 0 && publ != null && title != null && author != null && menuSelection != null)
         {
-            switch (menuSelection)
+            HashSet<Literature> litList = this.findLiterature(title.toUpperCase());
+            
+            Boolean isDifferent = true;
+            for(Literature lit : litList)
             {
-                case "book":
-                    register.addLiterature(new Book(title, author, publ, edition));
-                    break;
+                SingleReleases singleRel = (SingleReleases) lit;
+                if(singleRel.getEdition() == edition)
+                {
+                    isDifferent = false;
+                }
+            }
+            
+            if (litList.isEmpty() || isDifferent)
+            {
+                switch (menuSelection)
+                {
+                    case "book":
+                        register.addLiterature(new Book(title, author, publ, edition));
+                        break;
 
-                default:
-                    throw new IllegalArgumentException("Unknown selection: " + menuSelection);
+                    default:
+                        throw new IllegalArgumentException("Unknown selection: " + menuSelection);
+                }
+            }else
+            {
+                throw new IllegalArgumentException(title + " is already in the list of literature");              
             }
         } else
         {
