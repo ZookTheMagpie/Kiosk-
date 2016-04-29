@@ -63,7 +63,7 @@ public class addNewspaperDialog extends Dialog<Newspaper>
             {
                 try
                 {
-                    if (newValue.length() != oldValue.length())
+                    if (newValue.length() != oldValue.length() && newValue.length() > 0)
                     {
                         Integer.parseInt(newValue);
                         newspaperIssuesInYear = Integer.parseInt(issuesInYear.getText());

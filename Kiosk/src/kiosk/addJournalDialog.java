@@ -63,7 +63,7 @@ public class addJournalDialog extends Dialog<Journal>
             {
                 try
                 {
-                    if (newValue.length() != oldValue.length())
+                    if (newValue.length() != oldValue.length() && newValue.length() > 0)
                     {
                         Integer.parseInt(newValue);
                         journalIssuesInYear = Integer.parseInt(issuesInYear.getText());
