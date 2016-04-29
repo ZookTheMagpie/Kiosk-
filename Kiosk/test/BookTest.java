@@ -48,7 +48,7 @@ public class BookTest
     public void testCreateBook()
     {
         Publisher publishe1 = new Publisher("John");
-        Book book1 = new Book("Javabook", "John Java", publishe1);
+        Book book1 = new Book("Javabook", "John Java", publishe1, 1);
         assertEquals("John Java", book1.getAuthor());
         assertEquals(publishe1, book1.getPublisher());
         assertEquals("Javabook", book1.getTitle());
@@ -61,7 +61,7 @@ public class BookTest
     @Test
     public void testNullBook()
     {
-        Book book1 = new Book(null, null, null);
+        Book book1 = new Book(null, null, null, 0);
         assertNull(book1.getAuthor());
         assertNull(book1.getPublisher());
         assertNull(book1.getTitle());
