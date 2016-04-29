@@ -367,15 +367,46 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
             }
         });
 
-        Menu addSeries = new Menu("Add Series");
+        Menu series = new Menu("Series");
+        MenuItem addSeries = new MenuItem("Add Serie");
+        MenuItem addBook = new MenuItem("Add book");
+        series.getItems().addAll(addSeries, addBook);
+        addSeries.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                addSeriesDialog sDialog = new addSeriesDialog();
+                Optional<Series> result = sDialog.showAndWait();
+                if (sDialog.isButtonOK())
+                {
+                    try
+                    {
+                        kioskL.addSeriesToRegister("series", sDialog.getSeriesTitle(),kioskL.getPublisher(sDialog.getSeriesPublisher()),sDialog.getFirstBook() , sDialog.getBookInSeries());
+                    } catch (InputMismatchException e)
+                    {
+                        Alert alert = new Alert(AlertType.ERROR);
+                        alert.setHeaderText("ERROR");
+                        alert.setContentText("Invalid entry");
+                    }
+                } else
+                {
+                    System.out.println("Error");
+                }
 
-        menuBar.getMenus().addAll(addMenu, addSeries);
+            }
+        });
+        
+        
+
+        menuBar.getMenus().addAll(addMenu, series);
         return menuBar;
     }
 
     /**
      * Returns an ObservableList holding the literatures to display.
-     *
+     * 
+     * 
      * @return an ObservableList holding the literatures to display.
      */
     private ObservableList<Literature> getLitteratureList()

@@ -152,14 +152,43 @@ public class KioskLogic
     }
 
     /**
-     * Finds all the literature that has a connection with the given search
-     * condition and returns the info about them. Searches by upper case.
-     *
-     * @param searchCondition the string you would like to search by
-     *
-     * @return the literature found
+     * TODO: ADD STUFF HERE!
+     * @param menuSelection
+     * @param title
+     * @param publ
+     * @param book
+     * @param number 
      */
-    public HashSet<Literature> findLiterature(String searchCondition)
+    public void addSeriesToRegister(String menuSelection, String title, Publisher publ, Book book, int number)
+    {
+        if (title.length() > 0 && publ != null && title != null && menuSelection != null)
+        {
+            switch (menuSelection)
+            {
+                case "series":
+                    register.addLiterature(new Series(title, publ, number, book));
+                    break;
+
+                default:
+                    throw new IllegalArgumentException("Unknown selection: " + menuSelection);
+            }
+        } else
+        {
+            throw new InputMismatchException("Invalid input");
+        }
+
+    }
+
+
+/**
+ * Finds all the literature that has a connection with the given search
+ * condition and returns the info about them. Searches by upper case.
+ *
+ * @param searchCondition the string you would like to search by
+ *
+ * @return the literature found
+ */
+public HashSet<Literature> findLiterature(String searchCondition)
     {
         HashSet<Literature> filteredList = new HashSet<>();
         Iterator it = register.getLiteratureListIterator();
