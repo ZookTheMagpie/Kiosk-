@@ -42,14 +42,14 @@ public class KioskLogic
      */
     public Publisher getPublisher(String publisherName)
     {
-        if (register.getPublisher(publisherName) != null)
+        try
         {
             return register.getPublisher(publisherName);
-        } else
+        } catch (IllegalArgumentException e)
         {
-            register.addPublisher(publisherName);
-            return register.getPublisher(publisherName);
-        }
+                register.addPublisher(publisherName);
+                return register.getPublisher(publisherName);
+        } 
     }
 
     /**

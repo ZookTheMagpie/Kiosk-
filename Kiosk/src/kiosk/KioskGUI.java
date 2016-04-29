@@ -37,8 +37,8 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 /**
- *The GUI for the kiosk application.
- * 
+ * The GUI for the kiosk application.
+ *
  * @author HaIIvard & Alexander Eilert Berg
  * @version 0.6
  */
@@ -124,9 +124,9 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
             // Change to upper case so that case is not an issue
             newVal = newVal.toUpperCase();
             literatures.setAll(kioskL.findLiterature(newVal));
-            if(literatures.isEmpty())
+            if (literatures.isEmpty())
             {
-                
+
             }
         }
     }
@@ -257,8 +257,15 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
                 Optional<Book> result = bDialog.showAndWait();
                 if (bDialog.isButtonOK())
                 {
-                    kioskL.addLiteratureWithAuthorToRegister("book", bDialog.getBookTitle(), bDialog.getBookAuthor(), kioskL.getPublisher(bDialog.getBookPublisher()), bDialog.getBookEdition());
-
+                    try
+                    {
+                        kioskL.addLiteratureWithAuthorToRegister("book", bDialog.getBookTitle(), bDialog.getBookAuthor(), kioskL.getPublisher(bDialog.getBookPublisher()), bDialog.getBookEdition());
+                    } catch (InputMismatchException e)
+                    {
+                        Alert alert = new Alert(AlertType.ERROR);
+                        alert.setHeaderText("ERROR");
+                        alert.setContentText("Invalid entry");
+                    }
                 } else
                 {
                     System.out.println("Error");
@@ -276,8 +283,15 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
                 Optional<Newspaper> result = nDialog.showAndWait();
                 if (nDialog.isButtonOK())
                 {
-                    kioskL.addLiteratureToRegister("newspaper", nDialog.getNewspaperTitle(), kioskL.getPublisher(nDialog.getNewspaperPublisher()),nDialog.getNewspaperIssuesInYear(), nDialog.getNewspaperGenre());
-
+                    try
+                    {
+                        kioskL.addLiteratureToRegister("newspaper", nDialog.getNewspaperTitle(), kioskL.getPublisher(nDialog.getNewspaperPublisher()), nDialog.getNewspaperIssuesInYear(), nDialog.getNewspaperGenre());
+                    } catch (InputMismatchException e)
+                    {
+                        Alert alert = new Alert(AlertType.ERROR);
+                        alert.setHeaderText("ERROR");
+                        alert.setContentText("Invalid entry");
+                    }
                 } else
                 {
                     System.out.println("Error");
@@ -285,7 +299,7 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
 
             }
         });
-        
+
         magazine.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
@@ -295,8 +309,15 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
                 Optional<Magazine> result = mDialog.showAndWait();
                 if (mDialog.isButtonOK())
                 {
-                    kioskL.addLiteratureToRegister("magazine", mDialog.getMagazineTitle(), kioskL.getPublisher(mDialog.getMagazinePublisher()), mDialog.getMagazineIssuesInYear(), mDialog.getMagazineGenre());
-
+                    try
+                    {
+                        kioskL.addLiteratureToRegister("magazine", mDialog.getMagazineTitle(), kioskL.getPublisher(mDialog.getMagazinePublisher()), mDialog.getMagazineIssuesInYear(), mDialog.getMagazineGenre());
+                    } catch (InputMismatchException e)
+                    {
+                        Alert alert = new Alert(AlertType.ERROR);
+                        alert.setHeaderText("ERROR");
+                        alert.setContentText("Invalid entry");
+                    }
                 } else
                 {
                     System.out.println("Error");
@@ -304,7 +325,7 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
 
             }
         });
-        
+
         journal.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
@@ -314,8 +335,15 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
                 Optional<Journal> result = jDialog.showAndWait();
                 if (jDialog.isButtonOK())
                 {
-                    kioskL.addLiteratureToRegister("journal", jDialog.getJournalTitle(), kioskL.getPublisher(jDialog.getJournalPublisher()), jDialog.getJournalIssuesInYear(), jDialog.getJournalGenre());
-
+                    try
+                    {
+                        kioskL.addLiteratureToRegister("journal", jDialog.getJournalTitle(), kioskL.getPublisher(jDialog.getJournalPublisher()), jDialog.getJournalIssuesInYear(), jDialog.getJournalGenre());
+                    } catch (InputMismatchException e)
+                    {
+                        Alert alert = new Alert(AlertType.ERROR);
+                        alert.setHeaderText("ERROR");
+                        alert.setContentText("Invalid entry");
+                    }
                 } else
                 {
                     System.out.println("Error");
@@ -323,13 +351,12 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
 
             }
         });
-        
+
         Menu addSeries = new Menu("Add Series");
 
         menuBar.getMenus().addAll(addMenu, addSeries);
         return menuBar;
     }
-
 
     /**
      * Returns an ObservableList holding the literatures to display.

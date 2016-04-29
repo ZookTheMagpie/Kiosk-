@@ -81,8 +81,14 @@ public class Register implements Observable
      */
     public void addPublisher(String publisherName)
     {
-        publishers.put(publisherName, new Publisher(publisherName));
-        updateObservers();
+        if (publisherName != null)
+        {
+            publishers.put(publisherName, new Publisher(publisherName));
+            updateObservers();
+        } else
+        {
+            throw new InputMismatchException("invalid input");
+        }
 
     }
 
@@ -107,6 +113,8 @@ public class Register implements Observable
      */
     public Publisher getPublisher(String publisherName)
     {
+        if(publisherName != null)
+        {
         Publisher returnPublisher = null;
         if (publishers.containsKey(publisherName))
         {
@@ -116,19 +124,22 @@ public class Register implements Observable
         {
             throw new IllegalArgumentException(publisherName + " is not in the list of publishers");
         }
-        
-                    
+        }
+        else{
+            
+            throw new InputMismatchException("Invalid input");
+        }
+
     }
 
-
-/**
- * Adds an observer to the list of observers.
- *
- * @param name of the observer
- * @throws IllegalArgumentException if the observer to add is null.
- */
-@Override
-        public void addObserver(Observer obs)
+    /**
+     * Adds an observer to the list of observers.
+     *
+     * @param name of the observer
+     * @throws IllegalArgumentException if the observer to add is null.
+     */
+    @Override
+    public void addObserver(Observer obs)
     {
         if (obs != null)
         {
@@ -155,7 +166,7 @@ public class Register implements Observable
      * @throws IllegalArgumentException if observer to be removed is null
      */
     @Override
-        public void removeObserver(Observer obs)
+    public void removeObserver(Observer obs)
     {
         if (obs != null)
         {
@@ -173,7 +184,7 @@ public class Register implements Observable
      * updates the observers list.
      */
     @Override
-        public void updateObservers()
+    public void updateObservers()
     {
         for (Observer obs : observers)
         {
