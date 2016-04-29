@@ -40,7 +40,7 @@ import javafx.util.Callback;
  *The GUI for the kiosk application.
  * 
  * @author HaIIvard & Alexander Eilert Berg
- * @version 0.5
+ * @version 0.6
  */
 public class KioskGUI extends Application implements EventHandler<ActionEvent>, Observer
 {
@@ -254,7 +254,7 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
                 Optional<Book> result = bDialog.showAndWait();
                 if (bDialog.isButtonOK())
                 {
-                    kioskL.addLiteratureWithAuthorToRegister("book", bDialog.getBookTitle(), bDialog.getBookAuthor(), kioskL.addPublisherToRegister(bDialog.getBookPublisher()), bDialog.getBookEdition());
+                    kioskL.addLiteratureWithAuthorToRegister("book", bDialog.getBookTitle(), bDialog.getBookAuthor(), kioskL.getPublisher(bDialog.getBookPublisher()), bDialog.getBookEdition());
 
                 } else
                 {
@@ -273,7 +273,7 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
                 Optional<Newspaper> result = nDialog.showAndWait();
                 if (nDialog.isButtonOK())
                 {
-                    kioskL.addLiteratureToRegister("newspaper", nDialog.getNewspaperTitle(), kioskL.addPublisherToRegister(nDialog.getNewspaperPublisher()),nDialog.getNewspaperIssuesInYear(), nDialog.getNewspaperGenre());
+                    kioskL.addLiteratureToRegister("newspaper", nDialog.getNewspaperTitle(), kioskL.getPublisher(nDialog.getNewspaperPublisher()),nDialog.getNewspaperIssuesInYear(), nDialog.getNewspaperGenre());
 
                 } else
                 {
@@ -292,7 +292,7 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
                 Optional<Magazine> result = mDialog.showAndWait();
                 if (mDialog.isButtonOK())
                 {
-                    kioskL.addLiteratureToRegister("magazine", mDialog.getMagazineTitle(), kioskL.addPublisherToRegister(mDialog.getMagazinePublisher()), mDialog.getMagazineIssuesInYear(), mDialog.getMagazineGenre());
+                    kioskL.addLiteratureToRegister("magazine", mDialog.getMagazineTitle(), kioskL.getPublisher(mDialog.getMagazinePublisher()), mDialog.getMagazineIssuesInYear(), mDialog.getMagazineGenre());
 
                 } else
                 {
@@ -311,7 +311,7 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
                 Optional<Journal> result = jDialog.showAndWait();
                 if (jDialog.isButtonOK())
                 {
-                    kioskL.addLiteratureToRegister("journal", jDialog.getJournalTitle(), kioskL.addPublisherToRegister(jDialog.getJournalPublisher()), jDialog.getJournalIssuesInYear(), jDialog.getJournalGenre());
+                    kioskL.addLiteratureToRegister("journal", jDialog.getJournalTitle(), kioskL.getPublisher(jDialog.getJournalPublisher()), jDialog.getJournalIssuesInYear(), jDialog.getJournalGenre());
 
                 } else
                 {
@@ -325,24 +325,6 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
 
         menuBar.getMenus().addAll(addMenu, addSeries);
         return menuBar;
-    }
-
-    /**
-     * Returns the publisher for the new literature, if the publisher doesn't
-     * exist, you have the choice of creating one.
-     *
-     * @return Publisher to use for literature creation.
-     */
-    private Publisher getPublisher(String publisherName)
-    {
-        Publisher publ = kioskL.getPublisher(publisherName);
-        if (publ == null)
-        {
-            kioskL.addPublisherToRegister(publisherName);
-            publ = kioskL.getPublisher(publisherName);
-        }
-
-        return publ;
     }
 
     /**
@@ -375,3 +357,4 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
     }
 
 }
+
