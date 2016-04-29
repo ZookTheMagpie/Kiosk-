@@ -6,8 +6,8 @@ import java.util.Iterator;
 /**
  * The kiosk class deals with the user interaction.
  *
- * @author Hallvard
- * @version 12.02.16
+ * @author Hallvard & Alexander Eilert Berg
+ * @version 0.5
  */
 public class KioskUI
 {
@@ -111,16 +111,16 @@ public class KioskUI
      */
     private void initiatePublisher(String publisherName)
     {
-        kioskL.addPublisherToRegister(publisherName);
+        kioskL.getPublisher(publisherName);
         System.out.println(publisherName + " added as a publisher.");
         System.out.println();
     }
 
     /**
-     * Returns the publisher for the new litterature, if the publisher doesn't
+     * Returns the publisher for the new literature, if the publisher doesn't
      * exist, you have the choice of creating one.
      *
-     * @return Publisher to use for litterature creation.
+     * @return Publisher to use for literature creation.
      */
     private Publisher getPublisher()
     {
@@ -139,7 +139,7 @@ public class KioskUI
             int answer = parser.getYesOrNo();
             if (answer == 1)
             {
-                kioskL.addPublisherToRegister(publisherName);
+                kioskL.getPublisher(publisherName);
                 publ = kioskL.getPublisher(publisherName);
             } else
             {
