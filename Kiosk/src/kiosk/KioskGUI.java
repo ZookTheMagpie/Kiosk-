@@ -125,10 +125,6 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
             // Change to upper case so that case is not an issue
             newVal = newVal.toUpperCase();
             literatures.setAll(kioskL.findLiterature(newVal));
-            if (literatures.isEmpty())
-            {
-
-            }
         }
     }
 
