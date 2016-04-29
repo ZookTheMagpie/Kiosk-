@@ -88,7 +88,7 @@ public class KioskLogic
     {
         if (title.length() > 0 && genre.length() > 0 && publ != null && menuSelection != null && title != null && genre != null)
         {
-            if (this.findLiterature(title).isEmpty())
+            if (this.findLiterature(title.toUpperCase()).isEmpty())
             {
                 switch (menuSelection)
                 {
