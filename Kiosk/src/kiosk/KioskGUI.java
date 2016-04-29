@@ -181,11 +181,13 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
                 if (event.getClickCount() == 2 && (! row.isEmpty()))
                 {
                     String data = row.getItem().getDetails();
-                    Alert 
-                }
-            }
-         
-            );
+                    Alert alert = new Alert(AlertType.INFORMATION);
+                    alert.setHeaderText("Detailed description:");
+                    alert.setContentText(data);
+                    Optional<ButtonType> result = alert.showAndWait();
+
+                } 
+            });
         return row;
         });
 
