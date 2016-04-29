@@ -273,7 +273,7 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
                 Optional<Newspaper> result = nDialog.showAndWait();
                 if (nDialog.isButtonOK())
                 {
-                    kioskL.addLiteratureWithAuthorToRegister("newspaper", nDialog.getNewspaperTitle(), nDialog.getNewspaperGenre(), kioskL.addPublisherToRegister(nDialog.getNewspaperPublisher()),nDialog.getNewspaperIssuesInYear());
+                    kioskL.addLiteratureToRegister("newspaper", nDialog.getNewspaperTitle(), kioskL.addPublisherToRegister(nDialog.getNewspaperPublisher()),nDialog.getNewspaperIssuesInYear(), nDialog.getNewspaperGenre());
 
                 } else
                 {
@@ -292,7 +292,7 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
                 Optional<Magazine> result = mDialog.showAndWait();
                 if (mDialog.isButtonOK())
                 {
-                    kioskL.addLiteratureWithAuthorToRegister("magazine", mDialog.getMagazineTitle(), mDialog.getMagazineGenre(), kioskL.addPublisherToRegister(mDialog.getMagazinePublisher()), mDialog.getMagazineIssuesInYear());
+                    kioskL.addLiteratureToRegister("magazine", mDialog.getMagazineTitle(), kioskL.addPublisherToRegister(mDialog.getMagazinePublisher()), mDialog.getMagazineIssuesInYear(), mDialog.getMagazineGenre());
 
                 } else
                 {
@@ -311,7 +311,7 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
                 Optional<Journal> result = jDialog.showAndWait();
                 if (jDialog.isButtonOK())
                 {
-                    kioskL.addLiteratureWithAuthorToRegister("journal", jDialog.getJournalTitle(), jDialog.getJournalGenre(), kioskL.addPublisherToRegister(jDialog.getJournalPublisher()), jDialog.getJournalIssuesInYear());
+                    kioskL.addLiteratureToRegister("journal", jDialog.getJournalTitle(), kioskL.addPublisherToRegister(jDialog.getJournalPublisher()), jDialog.getJournalIssuesInYear(), jDialog.getJournalGenre());
 
                 } else
                 {
