@@ -55,7 +55,7 @@ public class KioskLogic
     /**
      * removes literature from the list of literature
      *
-     * @param The name of theliterature to be removed
+     * @param The name of the literature to be removed
      */
     public void removeLit(String litName)
     {
@@ -81,8 +81,8 @@ public class KioskLogic
      * @param menuSelection choice made by user
      * @param title title of the literature to add
      * @param publ publisher of the literature to add
-     * @throws IllegalArgumentException if the menuSelection is unvalid.
-     * @throws InputMismatchException if the input is unvalid
+     * @throws IllegalArgumentException if the menuSelection is invalid or the litterature already is in the list.
+     * @throws InputMismatchException if the input is invalid
      */
     public void addLiteratureToRegister(String menuSelection, String title, Publisher publ, int issuesInYear, String genre)
     {
@@ -125,8 +125,8 @@ public class KioskLogic
      * @param title title of the literature to add
      * @param author author of the literature to add
      * @param publ publisher of the literature to add
-     * @throws IllegalArgumentException if the menuSelection is unvalid.
-     * @throws InputMismatchException if the input is unvalid
+     * @throws IllegalArgumentException if the menuSelection is invalid.
+     * @throws InputMismatchException if the input is invalid
      */
     /**
      * Adds literature of the selected kind to the store.
@@ -136,7 +136,7 @@ public class KioskLogic
      * @param author author of the literature to add
      * @param publ publisher of the literature to add
      * @param edition the edition number
-     * @throws IllegalArgumentException if the menuSelection is unvalid.
+     * @throws IllegalArgumentException if the menuSelection is invalid or litterature is already in the list.
      * @throws InputMismatchException if the input is unvalid
      */
     public void addLiteratureWithAuthorToRegister(String menuSelection, String title, String author, Publisher publ, int edition)
