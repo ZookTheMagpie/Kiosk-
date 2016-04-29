@@ -223,18 +223,18 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
             public void handle(ActionEvent event)
             {
                 TablePosition pos = (TablePosition) tableView.getSelectionModel().getSelectedCells().get(0);
-
+                Literature data = (Literature) pos.getTableView().getSelectionModel().getSelectedItem();
 // this gives the value in the selected cell:
-                String data = (String) pos.getTableColumn().getCellObservableValue(tableView.getItems().get(pos.getRow())).getValue();
-                String litName = data.toUpperCase();
+           //     Literature data = (Literature) pos.getTableColumn().getCellObservableValue(tableView.getItems().get(pos.getRow())).getItem();
+                String litName = data.getTitle();
 
                 Alert alert = new Alert(AlertType.CONFIRMATION);
                 alert.setHeaderText("Remove literature??");
-                alert.setContentText("Are you sure you want to remove " + data + "?");
+                alert.setContentText("Are you sure you want to remove " + litName + "?");
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK)
                 {
-                    kioskL.removeLit(litName);
+                    kioskL.removeLit(data);
                 } else
                 {
                 }

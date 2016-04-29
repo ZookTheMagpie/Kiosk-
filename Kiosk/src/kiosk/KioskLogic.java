@@ -55,22 +55,20 @@ public class KioskLogic
     /**
      * removes literature from the list of literature
      *
-     * @param The name of the literature to be removed
+     * @param Literature to be removed
      */
-    public void removeLit(String litName)
+    public void removeLit(Literature lit)
     {
 
         try
         {
-            Literature lit = this.findOneLiterature(litName);
-
             register.removeLiterature(lit);
         } catch (InputMismatchException e)
         {
-            System.out.println(litName + " is not literature");
+            System.out.println(lit.getTitle() + " is not literature");
         } catch (IllegalArgumentException e)
         {
-            System.out.println(litName + " is not in the list");
+            System.out.println(lit.getTitle() + " is not in the list");
         }
 
     }
