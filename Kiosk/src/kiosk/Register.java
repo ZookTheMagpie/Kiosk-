@@ -111,18 +111,24 @@ public class Register implements Observable
         if (publishers.containsKey(publisherName))
         {
             returnPublisher = publishers.get(publisherName);
+            return returnPublisher;
+        } else
+        {
+            throw new IllegalArgumentException(publisherName + " is not in the list of publishers");
         }
-        return returnPublisher;
+        
+                    
     }
 
-    /**
-     * Adds an observer to the list of observers.
-     *
-     * @param name of the observer
-     * @throws IllegalArgumentException if the observer to add is null.
-     */
-    @Override
-    public void addObserver(Observer obs)
+
+/**
+ * Adds an observer to the list of observers.
+ *
+ * @param name of the observer
+ * @throws IllegalArgumentException if the observer to add is null.
+ */
+@Override
+        public void addObserver(Observer obs)
     {
         if (obs != null)
         {
@@ -149,7 +155,7 @@ public class Register implements Observable
      * @throws IllegalArgumentException if observer to be removed is null
      */
     @Override
-    public void removeObserver(Observer obs)
+        public void removeObserver(Observer obs)
     {
         if (obs != null)
         {
@@ -167,7 +173,7 @@ public class Register implements Observable
      * updates the observers list.
      */
     @Override
-    public void updateObservers()
+        public void updateObservers()
     {
         for (Observer obs : observers)
         {
