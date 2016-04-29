@@ -280,6 +280,11 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
                         Alert alert = new Alert(AlertType.ERROR);
                         alert.setHeaderText("ERROR");
                         alert.setContentText("Invalid entry");
+                    }catch (IllegalArgumentException e)
+                    {
+                        Alert alert = new Alert(AlertType.ERROR);
+                        alert.setHeaderText("ERROR");
+                        alert.setContentText("The book is already in the list of literature");
                     }
                 } else
                 {
@@ -306,6 +311,11 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
                         Alert alert = new Alert(AlertType.ERROR);
                         alert.setHeaderText("ERROR");
                         alert.setContentText("Invalid entry");
+                    }catch (IllegalArgumentException e)
+                    {
+                        Alert alert = new Alert(AlertType.ERROR);
+                        alert.setHeaderText("ERROR");
+                        alert.setContentText("The newspaper is already in the list of literature");
                     }
                 } else
                 {
@@ -332,6 +342,11 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
                         Alert alert = new Alert(AlertType.ERROR);
                         alert.setHeaderText("ERROR");
                         alert.setContentText("Invalid entry");
+                    }catch (IllegalArgumentException e)
+                    {
+                        Alert alert = new Alert(AlertType.ERROR);
+                        alert.setHeaderText("ERROR");
+                        alert.setContentText("The magazine is already in the list of literature");
                     }
                 } else
                 {
@@ -358,6 +373,11 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
                         Alert alert = new Alert(AlertType.ERROR);
                         alert.setHeaderText("ERROR");
                         alert.setContentText("Invalid entry");
+                    }catch (IllegalArgumentException e)
+                    {
+                        Alert alert = new Alert(AlertType.ERROR);
+                        alert.setHeaderText("ERROR");
+                        alert.setContentText("The journal is already in the list of literature");
                     }
                 } else
                 {
