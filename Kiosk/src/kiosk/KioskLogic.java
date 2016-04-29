@@ -47,9 +47,9 @@ public class KioskLogic
             return register.getPublisher(publisherName);
         } catch (IllegalArgumentException e)
         {
-                register.addPublisher(publisherName);
-                return register.getPublisher(publisherName);
-        } 
+            register.addPublisher(publisherName);
+            return register.getPublisher(publisherName);
+        }
     }
 
     /**
@@ -81,25 +81,33 @@ public class KioskLogic
      * @param menuSelection choice made by user
      * @param title title of the literature to add
      * @param publ publisher of the literature to add
+     * @throws IllegalArgumentException if the menuSelection is unvalid.
+     * @throws InputMismatchException if the input is unvalid
      */
     public void addLiteratureToRegister(String menuSelection, String title, Publisher publ, int issuesInYear, String genre)
     {
-        switch (menuSelection)
+        if (title.length() > 0 && genre.length() > 0 && publ != null)
         {
-            case "newspaper":
-                register.addLiterature(new Newspaper(title, publ, issuesInYear, genre));
-                break;
+            switch (menuSelection)
+            {
+                case "newspaper":
+                    register.addLiterature(new Newspaper(title, publ, issuesInYear, genre));
+                    break;
 
-            case "magazine":
-                register.addLiterature(new Magazine(title, publ, issuesInYear, genre));
-                break;
+                case "magazine":
+                    register.addLiterature(new Magazine(title, publ, issuesInYear, genre));
+                    break;
 
-            case "journal":
-                register.addLiterature(new Journal(title, publ, issuesInYear, genre));
-                break;
+                case "journal":
+                    register.addLiterature(new Journal(title, publ, issuesInYear, genre));
+                    break;
 
-            default:
-                throw new IllegalArgumentException("Unknown selection: " + menuSelection);
+                default:
+                    throw new IllegalArgumentException("Unknown selection: " + menuSelection);
+            }
+        } else
+        {
+            throw new InputMismatchException("Invalid input");
         }
     }
 
@@ -110,17 +118,36 @@ public class KioskLogic
      * @param title title of the literature to add
      * @param author author of the literature to add
      * @param publ publisher of the literature to add
+     * @throws IllegalArgumentException if the menuSelection is unvalid.
+     * @throws InputMismatchException if the input is unvalid
+     */
+    /**
+     * Adds literature of the selected kind to the store.
+     *
+     * @param menuSelection choice made by user
+     * @param title title of the literature to add
+     * @param author author of the literature to add
+     * @param publ publisher of the literature to add
+     * @param edition the edition number
+     * @throws IllegalArgumentException if the menuSelection is unvalid.
+     * @throws InputMismatchException if the input is unvalid
      */
     public void addLiteratureWithAuthorToRegister(String menuSelection, String title, String author, Publisher publ, int edition)
     {
-        switch (menuSelection)
+        if (title.length() > 0 && author.length() > 0 && publ != null)
         {
-            case "book":
-                register.addLiterature(new Book(title, author, publ, edition));
-                break;
+            switch (menuSelection)
+            {
+                case "book":
+                    register.addLiterature(new Book(title, author, publ, edition));
+                    break;
 
-            default:
-                throw new IllegalArgumentException("Unknown selection: " + menuSelection);
+                default:
+                    throw new IllegalArgumentException("Unknown selection: " + menuSelection);
+            }
+        } else
+        {
+            throw new InputMismatchException("Invalid input");
         }
     }
 
@@ -182,6 +209,7 @@ public class KioskLogic
     /**
      * adds the observer from the input to the registers list of observers.
      *
+     * @throws InputMismatchException if the input is null
      * @param obs observer to add to the list.
      */
     public void addToRegisterObserverList(Observer obs)
@@ -199,6 +227,7 @@ public class KioskLogic
      * Finds a literature with the given name
      *
      * @param litName
+     * @throws InputMismatchException if input is null
      * @return Literature
      */
     private Literature findOneLiterature(String litName)
