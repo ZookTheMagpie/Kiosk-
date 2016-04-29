@@ -52,7 +52,6 @@ public class addJournalDialog extends Dialog<Journal>
 
         TextField issuesInYear = new TextField();
         issuesInYear.setPromptText("Issues In Year");
-        issuesInYear.setText("1");
 
         // Prevent characters (non-integers) to be added
         issuesInYear.textProperty().addListener(new ChangeListener<String>()
