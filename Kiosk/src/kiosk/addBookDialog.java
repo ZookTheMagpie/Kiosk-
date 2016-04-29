@@ -52,7 +52,6 @@ public class addBookDialog extends Dialog<Book>
 
         TextField edition = new TextField();
         edition.setPromptText("Edition");
-        edition.setText("1");
 
         // Prevent characters (non-integers) to be added
         edition.textProperty().addListener(new ChangeListener<String>()
@@ -63,7 +62,7 @@ public class addBookDialog extends Dialog<Book>
             {
                 try
                 {
-                    if (newValue.length() != oldValue.length())
+                    if (newValue.length() != oldValue.length() && newValue.length() > 0)
                     {
                         Integer.parseInt(newValue);
                         bookEdition = Integer.parseInt(edition.getText());

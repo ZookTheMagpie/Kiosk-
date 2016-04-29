@@ -63,7 +63,7 @@ public class addMagazineDialog extends Dialog<Magazine>
             {
                 try
                 {
-                    if (newValue.length() != oldValue.length())
+                    if (newValue.length() != oldValue.length() && newValue.length() > 0)
                     {
                         Integer.parseInt(newValue);
                         magazineIssuesInYear = Integer.parseInt(issuesInYear.getText());
