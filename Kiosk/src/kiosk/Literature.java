@@ -64,8 +64,8 @@ public abstract class Literature
      */
     public String getInfo()
     {
-        String returnString = getType() + 
-                "\n published by " + publisher.getName() + 
+        String returnString = " " + getTitle() + 
+                "\n Published by: " + publisher.getName() + 
                 getDetails();
         
         return returnString;

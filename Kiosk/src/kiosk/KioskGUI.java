@@ -172,25 +172,23 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
         tableView = new TableView();
         tableView.setItems(getLitteratureList());
         tableView.getColumns().addAll(titleColumn, publisherColumn);
-
-        tableView.setRowFactory(Literature
-                -> 
+        
+        tableView.setRowFactory(Literature ->
+        {
+            TableRow<Literature> row = new TableRow<>();
+            row.setOnMouseClicked(event ->
+            {
+                if (event.getClickCount() == 2 && (! row.isEmpty()))
                 {
-                    TableRow<Literature> row = new TableRow<>();
-                    row.setOnMouseClicked(event
-                            -> 
-                            {
-                                if (event.getClickCount() == 2 && (!row.isEmpty()))
-                                {
-                                    String data = row.getItem().getDetails();
-                                    Alert alert = new Alert(AlertType.INFORMATION);
-                                    alert.setHeaderText("Detailed description:");
-                                    alert.setContentText(data);
-                                    Optional<ButtonType> result = alert.showAndWait();
+                    String data = row.getItem().getInfo();
+                    Alert alert = new Alert(AlertType.INFORMATION);
+                    alert.setHeaderText("Detailed description:");
+                    alert.setContentText(data);
+                    Optional<ButtonType> result = alert.showAndWait();
 
-                                }
-                    });
-                    return row;
+                } 
+            });
+        return row;
         });
 
         vbox.getChildren().addAll(hbox1, tableView);
@@ -282,11 +280,6 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
                         Alert alert = new Alert(AlertType.ERROR);
                         alert.setHeaderText("ERROR");
                         alert.setContentText("Invalid entry");
-                    } catch (IllegalArgumentException e)
-                    {
-                        Alert alert = new Alert(AlertType.ERROR);
-                        alert.setHeaderText("ERROR");
-                        alert.setContentText("Invalid entry");
                     }
                 } else
                 {
@@ -309,11 +302,6 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
                     {
                         kioskL.addLiteratureToRegister("newspaper", nDialog.getNewspaperTitle(), kioskL.getPublisher(nDialog.getNewspaperPublisher()), nDialog.getNewspaperIssuesInYear(), nDialog.getNewspaperGenre());
                     } catch (InputMismatchException e)
-                    {
-                        Alert alert = new Alert(AlertType.ERROR);
-                        alert.setHeaderText("ERROR");
-                        alert.setContentText("Invalid entry");
-                    } catch (IllegalArgumentException e)
                     {
                         Alert alert = new Alert(AlertType.ERROR);
                         alert.setHeaderText("ERROR");
@@ -344,11 +332,6 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
                         Alert alert = new Alert(AlertType.ERROR);
                         alert.setHeaderText("ERROR");
                         alert.setContentText("Invalid entry");
-                    } catch (IllegalArgumentException e)
-                    {
-                        Alert alert = new Alert(AlertType.ERROR);
-                        alert.setHeaderText("ERROR");
-                        alert.setContentText("Invalid entry");
                     }
                 } else
                 {
@@ -371,11 +354,6 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
                     {
                         kioskL.addLiteratureToRegister("journal", jDialog.getJournalTitle(), kioskL.getPublisher(jDialog.getJournalPublisher()), jDialog.getJournalIssuesInYear(), jDialog.getJournalGenre());
                     } catch (InputMismatchException e)
-                    {
-                        Alert alert = new Alert(AlertType.ERROR);
-                        alert.setHeaderText("ERROR");
-                        alert.setContentText("Invalid entry");
-                    } catch (IllegalArgumentException e)
                     {
                         Alert alert = new Alert(AlertType.ERROR);
                         alert.setHeaderText("ERROR");

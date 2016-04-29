@@ -86,7 +86,7 @@ public class KioskLogic
      */
     public void addLiteratureToRegister(String menuSelection, String title, Publisher publ, int issuesInYear, String genre)
     {
-        if (title.length() > 0 && genre.length() > 0 && publ != null)
+        if (title.length() > 0 && genre.length() > 0 && publ != null && menuSelection != null && title != null && genre != null)
         {
             switch (menuSelection)
             {
@@ -134,7 +134,7 @@ public class KioskLogic
      */
     public void addLiteratureWithAuthorToRegister(String menuSelection, String title, String author, Publisher publ, int edition)
     {
-        if (title.length() > 0 && author.length() > 0 && publ != null)
+        if (title.length() > 0 && author.length() > 0 && publ != null && title != null && author != null && menuSelection != null)
         {
             switch (menuSelection)
             {
