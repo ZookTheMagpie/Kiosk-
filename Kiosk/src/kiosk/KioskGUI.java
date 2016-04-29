@@ -123,8 +123,11 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
 
             // Change to upper case so that case is not an issue
             newVal = newVal.toUpperCase();
-
             literatures.setAll(kioskL.findLiterature(newVal));
+            if(literatures.isEmpty())
+            {
+                
+            }
         }
     }
 
@@ -273,7 +276,7 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
                 Optional<Newspaper> result = nDialog.showAndWait();
                 if (nDialog.isButtonOK())
                 {
-                    kioskL.addLiteratureWithAuthorToRegister("newspaper", nDialog.getNewspaperTitle(), nDialog.getNewspaperGenre(), kioskL.getPublisher(nDialog.getNewspaperPublisher()),nDialog.getNewspaperIssuesInYear());
+                    kioskL.addLiteratureToRegister("newspaper", nDialog.getNewspaperTitle(), nDialog.getNewspaperGenre(), kioskL.getPublisher(nDialog.getNewspaperPublisher()),nDialog.getNewspaperIssuesInYear());
 
                 } else
                 {
@@ -327,23 +330,6 @@ public class KioskGUI extends Application implements EventHandler<ActionEvent>, 
         return menuBar;
     }
 
-    /**
-     * Returns the publisher for the new literature, if the publisher doesn't
-     * exist, you have the choice of creating one.
-     *
-     * @return Publisher to use for literature creation.
-     */
-    private Publisher getPublisher(String publisherName)
-    {
-        Publisher publ = kioskL.getPublisher(publisherName);
-        if (publ == null)
-        {
-            kioskL.getPublisher(publisherName);
-            publ = kioskL.getPublisher(publisherName);
-        }
-
-        return publ;
-    }
 
     /**
      * Returns an ObservableList holding the literatures to display.
