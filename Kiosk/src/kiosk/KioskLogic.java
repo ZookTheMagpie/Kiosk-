@@ -59,20 +59,20 @@ public class KioskLogic
      */
     public void removeLit(String litName)
     {
-        Literature lit = this.findOneLiterature(litName);
-        if (lit != null)
+
+        try
         {
-            try
-            {
-                register.removeLiterature(lit);
-            } catch (InputMismatchException e)
-            {
-                System.out.println(litName + " is not literature");
-            } catch (IllegalArgumentException e)
-            {
-                System.out.println(litName + " is not in the list");
-            }
+            Literature lit = this.findOneLiterature(litName);
+
+            register.removeLiterature(lit);
+        } catch (InputMismatchException e)
+        {
+            System.out.println(litName + " is not literature");
+        } catch (IllegalArgumentException e)
+        {
+            System.out.println(litName + " is not in the list");
         }
+
     }
 
     /**
